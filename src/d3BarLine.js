@@ -58,6 +58,7 @@ const chart = (setShowTooltip, setTooltipData) => {
         .attr("viewBox", [0, 0, width, height]);
 
     svg.append("g")
+        .attr('id', 'bars')
         .attr("fill", "steelblue")
         .attr("fill-opacity", 0.8)
         .selectAll("rect")
@@ -79,28 +80,50 @@ const chart = (setShowTooltip, setTooltipData) => {
             });
 
             setShowTooltip(true);
+
+            svg.select('#line')
+                .style('opacity', 0.3)
+
+            svg.select('#circles')
+                .style('opacity', 0.3)
         })
         .on("mouseout", (e, d) => {
             console.log('in mouseout');
 
             setShowTooltip(false);
+
+            svg.select('#line')
+                .style('opacity', 1)
+
+            svg.select('#circles')
+                .style('opacity', 1)
         })
 
     svg.append("path")
+        .attr("id", "line")
         .attr("fill", "none")
-        .attr("stroke", "currentColor")
+        .attr("stroke", "#1e4d75")
         .attr("stroke-miterlimit", 1)
         .attr("stroke-width", 3)
-        .attr("d", line(data));
+        .attr("d", line(data))
+        .on("mouseover", () => {
+            svg.select('#bars')
+                .style('opacity', 0.5)
+        })
+        .on("mouseout", () => {
+            svg.select('#bars')
+                .style('opacity', 1)
+        })
 
     svg.append("g")
-        .attr("fill", "steelblue")
-        .attr("fill-opacity", 0.8)
+        .attr("id", "circles")
+        .attr("fill", "white")
+        .attr("fill-opacity", 1)
         .selectAll("circle")
         .data(data)
         .join("circle")
-        .attr("stroke", "black")
-        .attr("stroke-width", 2)
+        .attr("stroke", "#1e4d75")
+        .attr("stroke-width", 1.5)
         .attr("cx", d => x(d.year) + x.bandwidth() / 2)
         .attr("r", 5)
         .attr("cy", d => y2(d.efficiency))
@@ -115,11 +138,17 @@ const chart = (setShowTooltip, setTooltipData) => {
             });
 
             setShowTooltip(true);
+
+            svg.select('#bars')
+                .style('opacity', 0.6)
         })
         .on("mouseout", (e, d) => {
             console.log('in mouseout');
 
             setShowTooltip(false);
+
+            svg.select('#bars')
+                .style('opacity', 1)
         })
 
     /*svg.append("g")
@@ -154,7 +183,7 @@ export default chart;
 function calcTooltipPosition(x, y) {
     let left, right, bottom, top;
 
-    if (y < window.innerHeight * 0.70) {
+    if (y < window.innerHeight * 0.60) {
         top = `${y + 30}px`;
         bottom = 'unset';
     }
