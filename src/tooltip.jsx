@@ -3,13 +3,12 @@ import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 
 const Container = styled.div`
-  padding: 10px 15px;
+  padding: 10px;
   background-color: rgba(255, 255, 255, 0.9);
   box-shadow: 1px 3px 10px 5px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
   position: absolute;
   z-index: 3000;
-  width: 200px;
   box-sizing: border-box;
   left: ${(props) => (props.$position ? `${props.$position.left}` : `0px`)};
   right: ${(props) => (props.$position ? `${props.$position.right}` : `auto`)};
@@ -65,9 +64,18 @@ export default function Tooltip({ showTooltip, toolTipData }) {
 
   const { seatData, data, position, turnout, margin } = innerData;
 
+  console.log(toolTipData);
+
   return (
     <Container $position={position} ref={tooltip}>
-        <p>Example Tooltip</p>
+        <DataRow
+          dataKey="% Complete"
+          dataVal={toolTipData.data.PercentageComplete} 
+        />
+        <DataRow
+          dataKey="Assesments"
+          dataVal={toolTipData.data.Assessed} 
+        />
       {/*innerData && (
         <>
           <TopPanel
@@ -118,7 +126,7 @@ const Dict = styled.div`
 
 const DetailsContainer = styled.div`
   display: grid;
-  grid-template-columns: 3fr 1fr 1.25fr;
+  grid-template-columns: 3fr 1fr;
   padding: 8px 0px;
   border-top: ${(props) => (props.$winner ? `1px solid #C8C8C8` : `none`)};
   border-bottom: ${(props) => (props.$winner ? `1px solid #C8C8C8` : `none`)};
@@ -126,7 +134,8 @@ const DetailsContainer = styled.div`
   text-transform: capitalize;
 
   .name {
-    font-size: 0.9rem;
+    font-size: 0.775rem;
+    font-weight : 500;
   }
 
   .party,
@@ -143,6 +152,7 @@ const DetailsContainer = styled.div`
 
     .party,
     .votes {
+      padding-left : 0.3rem;
       font-size: 0.875rem;
       text-align: right;
     }
@@ -161,12 +171,11 @@ const DetailsContainer = styled.div`
   }
 `;
 
-function PartyDetail({ winner, name, party, votes }) {
+function DataRow({dataKey, dataVal}) {
   return (
-    <DetailsContainer $winner={winner}>
-      <p className="name">{name.toLowerCase()}</p>
-      <p className="party">{party}</p>
-      <p className="votes">{votes}</p>
+    <DetailsContainer>
+      <p className="name">{dataKey}</p>
+      <p className="party">{dataVal}</p>
     </DetailsContainer>
   );
 }

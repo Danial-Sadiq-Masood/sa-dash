@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import data from './data.json'
+import data from './data1.json'
 
 console.log(data)
 
@@ -20,7 +20,7 @@ const y2Axis = g => g
 
 const y1Axis = g => g
     .attr("transform", `translate(${margin.left},0)`)
-    .style("color", "steelblue")
+    //.style("color", "steelblue")
     .call(d3.axisLeft(y1).ticks(null, "s"))
     .call(g => g.select(".domain").remove())
     .call(g => g.append("text")
@@ -30,28 +30,27 @@ const y1Axis = g => g
         .attr("text-anchor", "start")
         .text(data.y1))
 
-const xAxis = g => g
-    .attr("transform", `translate(0,${height - margin.bottom})`)
-    .call(d3.axisBottom(x)
-        .tickValues(d3.ticks(...d3.extent(x.domain()), width / 40).filter(v => x(v) !== undefined))
-        .tickSizeOuter(0))
-
-const y2 = d3.scaleLinear()
-    .domain(d3.extent(data, d => d.efficiency))
-    .rangeRound([height - margin.bottom, margin.top])
-
-const y1 = d3.scaleLinear()
-    .domain([0, d3.max(data, d => d.sales)])
-    .rangeRound([height - margin.bottom, margin.top])
-
 const x = d3.scaleBand()
-    .domain(data.map(d => d.year))
+    .domain(data.map((d, i) => d.ProvinceName))
     .rangeRound([margin.left, width - margin.right])
     .padding(0.1)
 
+const xAxis = g => g
+    .attr("transform", `translate(0,${height - margin.bottom})`)
+    .call(d3.axisBottom(x)
+        .tickSizeOuter(0))
+
+const y2 = d3.scaleLinear()
+    .domain(d3.extent(data, d => d.PercentageComplete))
+    .rangeRound([height - margin.bottom, margin.top])
+
+const y1 = d3.scaleLinear()
+    .domain([0, d3.max(data, d => d.Assessed)])
+    .rangeRound([height - margin.bottom, margin.top])
+
 const line = d3.line()
-    .x(d => x(d.year) + x.bandwidth() / 2)
-    .y(d => y2(d.efficiency))
+    .x((d, i) => x(d.ProvinceName) + x.bandwidth() / 2)
+    .y(d => y2(d.PercentageComplete))
 
 const chart = (setShowTooltip, setTooltipData) => {
     const svg = d3.create("svg")
@@ -59,16 +58,16 @@ const chart = (setShowTooltip, setTooltipData) => {
 
     svg.append("g")
         .attr('id', 'bars')
-        .attr("fill", "steelblue")
+        .attr("fill", "#606c38")
         .attr("fill-opacity", 0.8)
         .selectAll("rect")
         .data(data)
         .join("rect")
-        .attr("x", d => x(d.year))
+        .attr("x", d => x(d.ProvinceName))
         .attr("width", x.bandwidth())
-        .attr("y", d => y1(d.sales))
+        .attr("y", d => y1(d.Assessed))
         .attr("rx", 5)
-        .attr("height", d => y1(0) - y1(d.sales))
+        .attr("height", d => y1(0) - y1(d.Assessed))
         .on("mouseover", (e, d) => {
             console.log('in mouseover');
 
@@ -102,7 +101,7 @@ const chart = (setShowTooltip, setTooltipData) => {
     svg.append("path")
         .attr("id", "line")
         .attr("fill", "none")
-        .attr("stroke", "#1e4d75")
+        .attr("stroke", "#283618")
         .attr("stroke-miterlimit", 1)
         .attr("stroke-width", 3)
         .attr("d", line(data))
@@ -122,11 +121,11 @@ const chart = (setShowTooltip, setTooltipData) => {
         .selectAll("circle")
         .data(data)
         .join("circle")
-        .attr("stroke", "#1e4d75")
+        .attr("stroke", "#283618")
         .attr("stroke-width", 1.5)
-        .attr("cx", d => x(d.year) + x.bandwidth() / 2)
+        .attr("cx", (d, i) => x(d.ProvinceName) + x.bandwidth() / 2)
         .attr("r", 5)
-        .attr("cy", d => y2(d.efficiency))
+        .attr("cy", d => y2(d.PercentageComplete))
         .on("mouseover", (e, d) => {
             console.log('in mouseover');
 

@@ -8,7 +8,7 @@ import Tooltip from './tooltip'
 function App() {
 
   const [showTooltip, setShowTooltip] = useState(false);
-  const [toolTipData, setTooltipData] = useState(null);
+  const [toolTipData, setTooltipData] = useState({data : {}});
 
 
   return (
@@ -36,7 +36,7 @@ function ChartHolder({setShowTooltip, setTooltipData}) {
     , [])
 
   return (
-    <div className="w-[856px]" ref={ref}>
+    <div className="w-[856px] font-sans" ref={ref}>
 
     </div>
   )

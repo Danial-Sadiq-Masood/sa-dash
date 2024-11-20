@@ -1,0 +1,66 @@
+[
+    {
+        "ProvinceName": "Eastern Cape",
+        "TotalFacilities": 647,
+        "Assessed": 647,
+        "PercentageComplete": 100,
+        "Duplicates": 0,
+        "NumberOfDuplicates": 0
+    },
+    {
+        "ProvinceName": "Free State",
+        "TotalFacilities": 129,
+        "Assessed": 129,
+        "PercentageComplete": 100,
+        "Duplicates": 0,
+        "NumberOfDuplicates": 0
+    },
+    {
+        "ProvinceName": "Gauteng",
+        "TotalFacilities": 346,
+        "Assessed": 346,
+        "PercentageComplete": 100,
+        "Duplicates": 0,
+        "NumberOfDuplicates": 0
+    },
+    {
+        "ProvinceName": "KwaZulu-Natal",
+        "TotalFacilities": 553,
+        "Assessed": 553,
+        "PercentageComplete": 100,
+        "Duplicates": 0,
+        "NumberOfDuplicates": 0
+    },
+    {
+        "ProvinceName": "Limpopo",
+        "TotalFacilities": 220,
+        "Assessed": 220,
+        "PercentageComplete": 100,
+        "Duplicates": 0,
+        "NumberOfDuplicates": 0
+    },
+    {
+        "ProvinceName": "Mpumalanga",
+        "TotalFacilities": 323,
+        "Assessed": 323,
+        "PercentageComplete": 100,
+        "Duplicates": 0,
+        "NumberOfDuplicates": 0
+    },
+    {
+        "ProvinceName": "North West",
+        "TotalFacilities": 294,
+        "Assessed": 294,
+        "PercentageComplete": 100,
+        "Duplicates": 0,
+        "NumberOfDuplicates": 0
+    },
+    {
+        "ProvinceName": "Western Cape",
+        "TotalFacilities": 123,
+        "Assessed": 123,
+        "PercentageComplete": 100,
+        "Duplicates": 0,
+        "NumberOfDuplicates": 0
+    }
+]
