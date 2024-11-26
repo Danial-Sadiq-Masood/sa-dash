@@ -3,13 +3,17 @@ import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 
 const Container = styled.div`
-  padding: 10px;
+  padding: 15px;
+  padding-left : 10px;
   background-color: rgba(255, 255, 255, 0.9);
   box-shadow: 1px 3px 10px 5px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
+  border-left: 8px solid #808960;
   position: absolute;
   z-index: 3000;
   box-sizing: border-box;
+  display : flex;
+  flex-direction: column;
   left: ${(props) => (props.$position ? `${props.$position.left}` : `0px`)};
   right: ${(props) => (props.$position ? `${props.$position.right}` : `auto`)};
   bottom: ${(props) =>
@@ -17,7 +21,6 @@ const Container = styled.div`
   top: ${(props) => (props.$position ? `${props.$position.top}` : `0px`)};
   transform-origin: center;
   opacity: 0;
-  transform: scale(0.9);
   visibility: "hidden";
 
   @media only screen and (max-width: 450px) {
@@ -28,20 +31,7 @@ const Container = styled.div`
 export default function Tooltip({ showTooltip, toolTipData }) {
   const tooltip = useRef();
 
-  const [innerData, setInnerData] = useState({
-    position: null,
-    seatData: { seat: "NA 10", loc: "Dera Ghazi Khan" },
-    data: [
-      { candidate: "Maulana Mohammad Qasim", party: "MMA", votes: 297872 },
-      {
-        candidate: "Nawabzada Abdul Qadir Khan",
-        party: "PPPP",
-        votes: "231380",
-      },
-    ],
-    turnout: 25,
-    margin: 20,
-  });
+  const [innerData, setInnerData] = useState({});
 
   useEffect(() => {
     if (showTooltip) {
@@ -56,198 +46,38 @@ export default function Tooltip({ showTooltip, toolTipData }) {
     }
   }, [showTooltip]);
 
-  useEffect(() => {
-    if (toolTipData) {
-      setInnerData(toolTipData);
-    }
-  }, [toolTipData]);
-
-  const { seatData, data, position, turnout, margin } = innerData;
-
-  console.log(toolTipData);
-
   return (
-    <Container $position={position} ref={tooltip}>
-        <DataRow
-          dataKey="% Complete"
-          dataVal={toolTipData.data.PercentageComplete} 
+    <Container $position={toolTipData.position} ref={tooltip}>
+      <div>
+        <div className="flex items-center justify-between border-b-2 border-gray-200 pb-2">
+          <h5 className="text-sm font-bold leading-none text-gray-900 dark:text-white">{toolTipData.data.ProvinceName}
+          </h5>
+        </div>
+        <DataRows
+          rows={toolTipData.data.rows}
         />
-        <DataRow
-          dataKey="Assesments"
-          dataVal={toolTipData.data.Assessed} 
-        />
-      {/*innerData && (
-        <>
-          <TopPanel
-            seat={seatData.seat}
-            loc={seatData.loc}
-            margin={margin}
-            turnout={turnout}
-          />
-          {data.length === 0 && <p>Data unavailable</p>}
-          {data[0] && (
-            <PartyDetail
-              winner
-              name={data[0].candidate}
-              party={data[0].party}
-              votes={!data[1] ? "Uncont." : data[0].votes}
-            />
-          )}
-          {data[1] && (
-            <PartyDetail
-              name={data[1].candidate}
-              party={data[1].party}
-              votes={data[1].votes}
-            />
-          )}
-
-          <Dict $display={!data.length === 0}>
-            {data[0] && (
-              <p>
-                <b>{data[0].party}</b>: {Dictionary[data[0].party]}
-              </p>
-            )}
-            {data[1] && data[0].party !== data[1].party && (
-              <p>
-                <b>{data[1].party}</b>: {Dictionary[data[1].party]}
-              </p>
-            )}
-          </Dict>
-        </>
-      )*/}
+      </div>
     </Container>
   );
 }
 
-const Dict = styled.div`
-  padding-top: 5px;
-  font-size: 0.75rem;
-`;
-
-const DetailsContainer = styled.div`
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  padding: 8px 0px;
-  border-top: ${(props) => (props.$winner ? `1px solid #C8C8C8` : `none`)};
-  border-bottom: ${(props) => (props.$winner ? `1px solid #C8C8C8` : `none`)};
-  font-weight: ${(props) => (props.$winner ? 700 : 400)};
-  text-transform: capitalize;
-
-  .name {
-    font-size: 0.775rem;
-    font-weight : 500;
-  }
-
-  .party,
-  .votes {
-    font-size: 0.775rem;
-    text-align: right;
-    padding: 0px 0.25rem;
-  }
-
-  @media only screen and (max-width: 850px) {
-    .name {
-      font-size: 1rem;
-    }
-
-    .party,
-    .votes {
-      padding-left : 0.3rem;
-      font-size: 0.875rem;
-      text-align: right;
-    }
-  }
-
-  @media only screen and (max-width: 450px) {
-    .name {
-      font-size: 1.25rem;
-    }
-
-    .party,
-    .votes {
-      font-size: 1.1rem;
-      text-align: right;
-    }
-  }
-`;
-
-function DataRow({dataKey, dataVal}) {
+function DataRows({ rows }) {
   return (
-    <DetailsContainer>
-      <p className="name">{dataKey}</p>
-      <p className="party">{dataVal}</p>
-    </DetailsContainer>
-  );
-}
-
-const TopPanelContainer = styled.div`
-  padding: 0.8rem 0px;
-`;
-
-const LocationContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.3rem 0px;
-
-  .seat,
-  .percentages {
-    font-weight: 700;
-    font-size: 0.9rem;
-  }
-
-  .percentages {
-    font-weight: 400;
-  }
-
-  .percentages > span {
-    font-family: "DM Serif Text";
-  }
-
-  .loc {
-    font-weight: 400;
-    font-size: 0.75rem;
-  }
-
-  @media only screen and (max-width: 850px) {
-    .seat,
-    .percentages {
-      font-size: 1rem;
-    }
-
-    .loc {
-      font-size: 0.85rem;
-    }
-  }
-
-  @media only screen and (max-width: 450px) {
-    .seat,
-    .percentages {
-      font-size: 1.2rem;
-    }
-
-    .loc {
-      font-size: 1rem;
-    }
-  }
-`;
-
-function TopPanel({ seat, loc, turnout, margin }) {
-  return (
-    <TopPanelContainer>
-      <LocationContainer>
-        <p className="seat">{seat}</p>
-        <p className="loc">{loc}</p>
-      </LocationContainer>
-
-      <LocationContainer>
-        <p className="percentages">
-          <span>Vote Margin:</span> {margin === "N/A" ? margin : `${margin}%`}
-        </p>
-        <p className="percentages">
-          <span>Turnout:</span> {turnout ? `${turnout}%` : `N/A`}
-        </p>
-      </LocationContainer>
-    </TopPanelContainer>
+    <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
+      {rows.map(row => (
+        <li key={row.name} className="py-1">
+          <div className="flex items-end">
+            <div className="flex-1 min-w-0">
+              <p className="text-xs text-left font-semibold pr-3 text-gray-900 truncate dark:text-white">
+                {row.name}
+              </p>
+            </div>
+            <div className="inline-flex items-center text-xs text-gray-900 dark:text-white">
+              {row.val}
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 }
