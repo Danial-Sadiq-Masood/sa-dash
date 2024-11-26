@@ -1,5 +1,7 @@
 import * as Plot from "@observablehq/plot";
 
+import * as d3 from "d3"
+
 import points from "./points.json"
 
 const longitude = d3.scalePoint(new Set(Plot.valueof(points, "key")), [180, -180]).padding(0.5).align(1)

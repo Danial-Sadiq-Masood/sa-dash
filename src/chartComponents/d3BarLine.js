@@ -1,9 +1,6 @@
 import * as d3 from "d3";
 import data from './data1.json'
 
-
-window.d3 = d3;
-
 import { createMachine, createActor, setup } from 'xstate';
 
 console.log(data)
@@ -120,21 +117,17 @@ function createBarChartMachine({
             },
         });
 
-    const runningMachine = createActor(barChartMachine);
+    const actor = createActor(barChartMachine);
 
-    runningMachine.subscribe({
+    /*runningMachine.subscribe({
         complete: () => {
             rootNode.replaceChildren();
         }
-    });
+    });*/
 
-    window.machine = runningMachine;
+    window.machine = actor;
 
-    runningMachine.start();
-
-    return {
-        stop: () => runningMachine.stop()
-    }
+    return actor;
 
 }
 
@@ -287,6 +280,8 @@ function buildChart(setShowTooltip, setTooltipData, rootNode, actorService) {
     svg.selectAll('text').attr('class', 'barChartText')
 
     rootNode.appendChild(svg.node());
+
+    console.log('building chart');
 }
 
 export default buildChart;
@@ -317,7 +312,3 @@ function calcTooltipPosition(x, y) {
         top, right, bottom, left
     }
 }
-
-const chart = () => {
-
-};
