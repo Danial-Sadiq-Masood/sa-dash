@@ -74,9 +74,10 @@ export default function drawChart() {
             Plot.dot(points, {
                 x: ({ key }) => longitude(key),
                 y: ({ value }) => 90 - value,
+                d : (d) => d,
                 fill: "#606c38",
                 stroke: "white",
-                r : 5
+                r : 4
             }),
 
             // interactive labels

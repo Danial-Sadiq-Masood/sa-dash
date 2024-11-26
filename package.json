@@ -11,9 +11,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.2.0",
     "@observablehq/plot": "^0.6.16",
+    "@radix-ui/react-dialog": "^1.1.2",
+    "@radix-ui/react-popover": "^1.1.2",
+    "@radix-ui/react-separator": "^1.1.0",
+    "@radix-ui/react-slot": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "cmdk": "^1.0.0",
     "d3": "^7.9.0",
     "gsap": "^3.12.5",
     "lucide-react": "^0.460.0",
@@ -26,6 +33,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.26.0",
     "@eslint/js": "^9.13.0",
     "@types/node": "^22.9.0",
     "@types/react": "^18.3.12",
