@@ -1,0 +1,172 @@
+{
+    "data": [
+        {
+            "ViewName": "districts",
+            "Display": "Alfred Nzo District Municipality",
+            "Label": "Alfred Nzo District Municipality",
+            "Name": "Alfred Nzo District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Amathole District Municipality",
+            "Label": "Amathole District Municipality",
+            "Name": "Amathole District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Bojanala Platinum District Municipality",
+            "Label": "Bojanala Platinum District Municipality",
+            "Name": "Bojanala Platinum District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Buffalo City Metropolitan Municipality",
+            "Label": "Buffalo City Metropolitan Municipality",
+            "Name": "Buffalo City Metropolitan Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Capricorn District Municipality",
+            "Label": "Capricorn District Municipality",
+            "Name": "Capricorn District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Chris Hani District Municipality",
+            "Label": "Chris Hani District Municipality",
+            "Name": "Chris Hani District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "City of Cape Town Metropolitan Municipality",
+            "Label": "City of Cape Town Metropolitan Municipality",
+            "Name": "City of Cape Town Metropolitan Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "City of Johannesburg Metropolitan Municipality",
+            "Label": "City of Johannesburg Metropolitan Municipality",
+            "Name": "City of Johannesburg Metropolitan Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "City of Tshwane Metropolitan Municipality",
+            "Label": "City of Tshwane Metropolitan Municipality",
+            "Name": "City of Tshwane Metropolitan Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Dr Kenneth Kaunda District Municipality",
+            "Label": "Dr Kenneth Kaunda District Municipality",
+            "Name": "Dr Kenneth Kaunda District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Ehlanzeni District Municipality",
+            "Label": "Ehlanzeni District Municipality",
+            "Name": "Ehlanzeni District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Ekurhuleni Metropolitan Municipality",
+            "Label": "Ekurhuleni Metropolitan Municipality",
+            "Name": "Ekurhuleni Metropolitan Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "eThekwini Metropolitan Municipality",
+            "Label": "eThekwini Metropolitan Municipality",
+            "Name": "eThekwini Metropolitan Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Gert Sibande District Municipality",
+            "Label": "Gert Sibande District Municipality",
+            "Name": "Gert Sibande District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Harry Gwala District Municipality",
+            "Label": "Harry Gwala District Municipality",
+            "Name": "Harry Gwala District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "King Cetshwayo District Municipality",
+            "Label": "King Cetshwayo District Municipality",
+            "Name": "King Cetshwayo District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Lejweleputswa District Municipality",
+            "Label": "Lejweleputswa District Municipality",
+            "Name": "Lejweleputswa District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Mopani District Municipality",
+            "Label": "Mopani District Municipality",
+            "Name": "Mopani District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Ngaka Modiri Molema District Municipality",
+            "Label": "Ngaka Modiri Molema District Municipality",
+            "Name": "Ngaka Modiri Molema District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Nkangala District Municipality",
+            "Label": "Nkangala District Municipality",
+            "Name": "Nkangala District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Oliver Tambo District Municipality",
+            "Label": "Oliver Tambo District Municipality",
+            "Name": "Oliver Tambo District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Other (Please specify manually)",
+            "Label": "Other (Please specify manually)",
+            "Name": "Other (Please specify manually)"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Sedibeng District Municipality",
+            "Label": "Sedibeng District Municipality",
+            "Name": "Sedibeng District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Thabo Mofutsanyana District Municipality",
+            "Label": "Thabo Mofutsanyana District Municipality",
+            "Name": "Thabo Mofutsanyana District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Ugu District Municipality",
+            "Label": "Ugu District Municipality",
+            "Name": "Ugu District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "uMgungundlovu District Municipality",
+            "Label": "uMgungundlovu District Municipality",
+            "Name": "uMgungundlovu District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Uthukela District Municipality",
+            "Label": "Uthukela District Municipality",
+            "Name": "Uthukela District Municipality"
+        },
+        {
+            "ViewName": "districts",
+            "Display": "Zululand District Municipality",
+            "Label": "Zululand District Municipality",
+            "Name": "Zululand District Municipality"
+        }
+    ]
+}

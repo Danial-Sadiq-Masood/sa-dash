@@ -1,0 +1,52 @@
+{
+    "data": [
+        {
+            "ViewName": "provinces",
+            "Display": "Eastern Cape",
+            "Label": "Eastern Cape",
+            "Name": "Eastern Cape"
+        },
+        {
+            "ViewName": "provinces",
+            "Display": "Free State",
+            "Label": "Free State",
+            "Name": "Free State"
+        },
+        {
+            "ViewName": "provinces",
+            "Display": "Gauteng",
+            "Label": "Gauteng",
+            "Name": "Gauteng"
+        },
+        {
+            "ViewName": "provinces",
+            "Display": "KwaZulu-Natal",
+            "Label": "KwaZulu-Natal",
+            "Name": "KwaZulu-Natal"
+        },
+        {
+            "ViewName": "provinces",
+            "Display": "Limpopo",
+            "Label": "Limpopo",
+            "Name": "Limpopo"
+        },
+        {
+            "ViewName": "provinces",
+            "Display": "Mpumalanga",
+            "Label": "Mpumalanga",
+            "Name": "Mpumalanga"
+        },
+        {
+            "ViewName": "provinces",
+            "Display": "North West",
+            "Label": "North West",
+            "Name": "North West"
+        },
+        {
+            "ViewName": "provinces",
+            "Display": "Western Cape",
+            "Label": "Western Cape",
+            "Name": "Western Cape"
+        }
+    ]
+}

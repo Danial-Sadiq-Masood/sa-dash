@@ -1,0 +1,796 @@
+{
+    "data": [
+        {
+            "ViewName": "subdistricts",
+            "Display": "AbaQulusi Local Municipality",
+            "Label": "AbaQulusi Local Municipality",
+            "Name": "AbaQulusi Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Alfred Duma Local Municipality",
+            "Label": "Alfred Duma Local Municipality",
+            "Name": "Alfred Duma Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Amahlathi Local Municipality",
+            "Label": "Amahlathi Local Municipality",
+            "Name": "Amahlathi Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Ba-Phalaborwa Local Municipality",
+            "Label": "Ba-Phalaborwa Local Municipality",
+            "Name": "Ba-Phalaborwa Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Blouberg Local Municipality",
+            "Label": "Blouberg Local Municipality",
+            "Name": "Blouberg Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Buffalo City Health sub-District",
+            "Label": "Buffalo City Health sub-District",
+            "Name": "Buffalo City Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Bushbuckridge Local Municipality",
+            "Label": "Bushbuckridge Local Municipality",
+            "Name": "Bushbuckridge Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Cape Town Eastern Health sub-District",
+            "Label": "Cape Town Eastern Health sub-District",
+            "Name": "Cape Town Eastern Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Cape Town Northern Health sub-District",
+            "Label": "Cape Town Northern Health sub-District",
+            "Name": "Cape Town Northern Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Cape Town Southern Health sub-District",
+            "Label": "Cape Town Southern Health sub-District",
+            "Name": "Cape Town Southern Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Cape Town Western Health sub-District",
+            "Label": "Cape Town Western Health sub-District",
+            "Name": "Cape Town Western Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Chief Albert Luthuli Local Municipality",
+            "Label": "Chief Albert Luthuli Local Municipality",
+            "Name": "Chief Albert Luthuli Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "City of Matlosana Local Municipality",
+            "Label": "City of Matlosana Local Municipality",
+            "Name": "City of Matlosana Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "City of Mbombela Local Municipality",
+            "Label": "City of Mbombela Local Municipality",
+            "Name": "City of Mbombela Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "City of uMhlathuze Local Municipality",
+            "Label": "City of uMhlathuze Local Municipality",
+            "Name": "City of uMhlathuze Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Dihlabeng Local Municipality",
+            "Label": "Dihlabeng Local Municipality",
+            "Name": "Dihlabeng Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Dipaleseng Local Municipality",
+            "Label": "Dipaleseng Local Municipality",
+            "Name": "Dipaleseng Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Ditsobotla Local Municipality",
+            "Label": "Ditsobotla Local Municipality",
+            "Name": "Ditsobotla Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Dr JS Moroka Local Municipality",
+            "Label": "Dr JS Moroka Local Municipality",
+            "Name": "Dr JS Moroka Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Dr Nkosazana Dlamini Zuma Local Municipality",
+            "Label": "Dr Nkosazana Dlamini Zuma Local Municipality",
+            "Name": "Dr Nkosazana Dlamini Zuma Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Dr Pixley Ka Isaka Seme Local Municipality",
+            "Label": "Dr Pixley Ka Isaka Seme Local Municipality",
+            "Name": "Dr Pixley Ka Isaka Seme Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "eDumbe Local Municipality",
+            "Label": "eDumbe Local Municipality",
+            "Name": "eDumbe Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Ekurhuleni East 1 Health sub-District",
+            "Label": "Ekurhuleni East 1 Health sub-District",
+            "Name": "Ekurhuleni East 1 Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Ekurhuleni East 2 Health sub-District",
+            "Label": "Ekurhuleni East 2 Health sub-District",
+            "Name": "Ekurhuleni East 2 Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Ekurhuleni North 1 Health sub-District",
+            "Label": "Ekurhuleni North 1 Health sub-District",
+            "Name": "Ekurhuleni North 1 Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Ekurhuleni North 2 Health sub-District",
+            "Label": "Ekurhuleni North 2 Health sub-District",
+            "Name": "Ekurhuleni North 2 Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Ekurhuleni South 1 Health sub-District",
+            "Label": "Ekurhuleni South 1 Health sub-District",
+            "Name": "Ekurhuleni South 1 Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Ekurhuleni South 2 Health sub-District",
+            "Label": "Ekurhuleni South 2 Health sub-District",
+            "Name": "Ekurhuleni South 2 Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Emakhazeni Local Municipality",
+            "Label": "Emakhazeni Local Municipality",
+            "Name": "Emakhazeni Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Emalahleni Local Municipality",
+            "Label": "Emalahleni Local Municipality",
+            "Name": "Emalahleni Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Emfuleni Local Municipality",
+            "Label": "Emfuleni Local Municipality",
+            "Name": "Emfuleni Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Engcobo Local Municipality",
+            "Label": "Engcobo Local Municipality",
+            "Name": "Engcobo Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Enoch Mgijima Local Municipality",
+            "Label": "Enoch Mgijima Local Municipality",
+            "Name": "Enoch Mgijima Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "eThekwini Metropolitan Municipality Sub",
+            "Label": "eThekwini Metropolitan Municipality Sub",
+            "Name": "eThekwini Metropolitan Municipality Sub"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Govan Mbeki Local Municipality",
+            "Label": "Govan Mbeki Local Municipality",
+            "Name": "Govan Mbeki Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Great Kei Local Municipality",
+            "Label": "Great Kei Local Municipality",
+            "Name": "Great Kei Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Greater Giyani Local Municipality",
+            "Label": "Greater Giyani Local Municipality",
+            "Name": "Greater Giyani Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Greater Kokstad Local Municipality",
+            "Label": "Greater Kokstad Local Municipality",
+            "Name": "Greater Kokstad Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Greater Letaba Local Municipality",
+            "Label": "Greater Letaba Local Municipality",
+            "Name": "Greater Letaba Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Greater Tzaneen Local Municipality",
+            "Label": "Greater Tzaneen Local Municipality",
+            "Name": "Greater Tzaneen Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Impendle Local Municipality",
+            "Label": "Impendle Local Municipality",
+            "Name": "Impendle Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Ingquza Hill Local Municipality",
+            "Label": "Ingquza Hill Local Municipality",
+            "Name": "Ingquza Hill Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Inkosi Langalibalele Local Municipality",
+            "Label": "Inkosi Langalibalele Local Municipality",
+            "Name": "Inkosi Langalibalele Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Intsika Yethu Local Municipality",
+            "Label": "Intsika Yethu Local Municipality",
+            "Name": "Intsika Yethu Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Inxuba Yethemba Local Municipality",
+            "Label": "Inxuba Yethemba Local Municipality",
+            "Name": "Inxuba Yethemba Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "JB Marks Local Municipality",
+            "Label": "JB Marks Local Municipality",
+            "Name": "JB Marks Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Johannesburg A Health sub-District",
+            "Label": "Johannesburg A Health sub-District",
+            "Name": "Johannesburg A Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Johannesburg B Health sub-District",
+            "Label": "Johannesburg B Health sub-District",
+            "Name": "Johannesburg B Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Johannesburg C Health sub-District",
+            "Label": "Johannesburg C Health sub-District",
+            "Name": "Johannesburg C Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Johannesburg D Health sub-District",
+            "Label": "Johannesburg D Health sub-District",
+            "Name": "Johannesburg D Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Johannesburg E Health sub-District",
+            "Label": "Johannesburg E Health sub-District",
+            "Name": "Johannesburg E Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Johannesburg F Health sub-District",
+            "Label": "Johannesburg F Health sub-District",
+            "Name": "Johannesburg F Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Johannesburg G Health sub-District",
+            "Label": "Johannesburg G Health sub-District",
+            "Name": "Johannesburg G Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Kgetlengrivier Local Municipality",
+            "Label": "Kgetlengrivier Local Municipality",
+            "Name": "Kgetlengrivier Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Khayelitsha Health sub-District",
+            "Label": "Khayelitsha Health sub-District",
+            "Name": "Khayelitsha Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "King Sabata Dalindyebo Local Municipality",
+            "Label": "King Sabata Dalindyebo Local Municipality",
+            "Name": "King Sabata Dalindyebo Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Klipfontein Health sub-District",
+            "Label": "Klipfontein Health sub-District",
+            "Name": "Klipfontein Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Lekwa Local Municipality",
+            "Label": "Lekwa Local Municipality",
+            "Name": "Lekwa Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Lepelle-Nkumpi Local Municipality",
+            "Label": "Lepelle-Nkumpi Local Municipality",
+            "Name": "Lepelle-Nkumpi Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Lesedi Local Municipality",
+            "Label": "Lesedi Local Municipality",
+            "Name": "Lesedi Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Madibeng Local Municipality",
+            "Label": "Madibeng Local Municipality",
+            "Name": "Madibeng Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Mahikeng Local Municipality",
+            "Label": "Mahikeng Local Municipality",
+            "Name": "Mahikeng Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Maluti-a-Phofung Local Municipality",
+            "Label": "Maluti-a-Phofung Local Municipality",
+            "Name": "Maluti-a-Phofung Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Mantsopa Local Municipality",
+            "Label": "Mantsopa Local Municipality",
+            "Name": "Mantsopa Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Maquassi Hills Local Municipality",
+            "Label": "Maquassi Hills Local Municipality",
+            "Name": "Maquassi Hills Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Maruleng Local Municipality",
+            "Label": "Maruleng Local Municipality",
+            "Name": "Maruleng Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Masilonyana Local Municipality",
+            "Label": "Masilonyana Local Municipality",
+            "Name": "Masilonyana Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Matatiele Local Municipality",
+            "Label": "Matatiele Local Municipality",
+            "Name": "Matatiele Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Matjhabeng Local Municipality",
+            "Label": "Matjhabeng Local Municipality",
+            "Name": "Matjhabeng Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Mbhashe Local Municipality",
+            "Label": "Mbhashe Local Municipality",
+            "Name": "Mbhashe Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Mbizana Local Municipality",
+            "Label": "Mbizana Local Municipality",
+            "Name": "Mbizana Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Mhlontlo Local Municipality",
+            "Label": "Mhlontlo Local Municipality",
+            "Name": "Mhlontlo Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Midvaal Local Municipality",
+            "Label": "Midvaal Local Municipality",
+            "Name": "Midvaal Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Mitchells Plain Health sub-District",
+            "Label": "Mitchells Plain Health sub-District",
+            "Name": "Mitchells Plain Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Mkhambathini Local Municipality",
+            "Label": "Mkhambathini Local Municipality",
+            "Name": "Mkhambathini Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Mkhondo Local Municipality",
+            "Label": "Mkhondo Local Municipality",
+            "Name": "Mkhondo Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Mnquma Local Municipality",
+            "Label": "Mnquma Local Municipality",
+            "Name": "Mnquma Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Molemole Local Municipality",
+            "Label": "Molemole Local Municipality",
+            "Name": "Molemole Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Moretele Local Municipality",
+            "Label": "Moretele Local Municipality",
+            "Name": "Moretele Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Moses Kotane Local Municipality",
+            "Label": "Moses Kotane Local Municipality",
+            "Name": "Moses Kotane Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Mpofana Local Municipality",
+            "Label": "Mpofana Local Municipality",
+            "Name": "Mpofana Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Msukaligwa Local Municipality",
+            "Label": "Msukaligwa Local Municipality",
+            "Name": "Msukaligwa Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Msunduzi Local Municipality",
+            "Label": "Msunduzi Local Municipality",
+            "Name": "Msunduzi Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Mthonjaneni Local Municipality",
+            "Label": "Mthonjaneni Local Municipality",
+            "Name": "Mthonjaneni Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Nala Local Municipality",
+            "Label": "Nala Local Municipality",
+            "Name": "Nala Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Ngqushwa Local Municipality",
+            "Label": "Ngqushwa Local Municipality",
+            "Name": "Ngqushwa Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Nkandla Local Municipality",
+            "Label": "Nkandla Local Municipality",
+            "Name": "Nkandla Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Nketoana Local Municipality",
+            "Label": "Nketoana Local Municipality",
+            "Name": "Nketoana Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Nkomazi Local Municipality",
+            "Label": "Nkomazi Local Municipality",
+            "Name": "Nkomazi Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Nongoma Local Municipality",
+            "Label": "Nongoma Local Municipality",
+            "Name": "Nongoma Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Ntabankulu Local Municipality",
+            "Label": "Ntabankulu Local Municipality",
+            "Name": "Ntabankulu Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Nyandeni Local Municipality",
+            "Label": "Nyandeni Local Municipality",
+            "Name": "Nyandeni Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Okhahlamba Local Municipality",
+            "Label": "Okhahlamba Local Municipality",
+            "Name": "Okhahlamba Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Other (Please specify manually)",
+            "Label": "Other (Please specify manually)",
+            "Name": "Other (Please specify manually)"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Phumelela Local Municipality",
+            "Label": "Phumelela Local Municipality",
+            "Name": "Phumelela Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Polokwane Local Municipality",
+            "Label": "Polokwane Local Municipality",
+            "Name": "Polokwane Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Port St Johns Local Municipality",
+            "Label": "Port St Johns Local Municipality",
+            "Name": "Port St Johns Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Ramotshere Moiloa Local Municipality",
+            "Label": "Ramotshere Moiloa Local Municipality",
+            "Name": "Ramotshere Moiloa Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Ratlou Local Municipality",
+            "Label": "Ratlou Local Municipality",
+            "Name": "Ratlou Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Ray Nkonyeni Local Municipality",
+            "Label": "Ray Nkonyeni Local Municipality",
+            "Name": "Ray Nkonyeni Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Raymond Mhlaba Local Municipality",
+            "Label": "Raymond Mhlaba Local Municipality",
+            "Name": "Raymond Mhlaba Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Richmond Local Municipality",
+            "Label": "Richmond Local Municipality",
+            "Name": "Richmond Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Rustenburg Local Municipality",
+            "Label": "Rustenburg Local Municipality",
+            "Name": "Rustenburg Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Sakhisizwe Local Municipality",
+            "Label": "Sakhisizwe Local Municipality",
+            "Name": "Sakhisizwe Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Setsoto Local Municipality",
+            "Label": "Setsoto Local Municipality",
+            "Name": "Setsoto Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Steve Tshwete Local Municipality",
+            "Label": "Steve Tshwete Local Municipality",
+            "Name": "Steve Tshwete Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Thaba Chweu Local Municipality",
+            "Label": "Thaba Chweu Local Municipality",
+            "Name": "Thaba Chweu Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Thembisile Hani Local Municipality",
+            "Label": "Thembisile Hani Local Municipality",
+            "Name": "Thembisile Hani Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Tokologo Local Municipality",
+            "Label": "Tokologo Local Municipality",
+            "Name": "Tokologo Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Tshwane 1 Health sub-District",
+            "Label": "Tshwane 1 Health sub-District",
+            "Name": "Tshwane 1 Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Tshwane 2 Health sub-District",
+            "Label": "Tshwane 2 Health sub-District",
+            "Name": "Tshwane 2 Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Tshwane 3 Health sub-District",
+            "Label": "Tshwane 3 Health sub-District",
+            "Name": "Tshwane 3 Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Tshwane 4 Health sub-District",
+            "Label": "Tshwane 4 Health sub-District",
+            "Name": "Tshwane 4 Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Tshwane 5 Health sub-District",
+            "Label": "Tshwane 5 Health sub-District",
+            "Name": "Tshwane 5 Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Tshwane 6 Health sub-District",
+            "Label": "Tshwane 6 Health sub-District",
+            "Name": "Tshwane 6 Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Tshwane 7 Health sub-District",
+            "Label": "Tshwane 7 Health sub-District",
+            "Name": "Tshwane 7 Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Tswaing Local Municipality",
+            "Label": "Tswaing Local Municipality",
+            "Name": "Tswaing Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Tswelopele Local Municipality",
+            "Label": "Tswelopele Local Municipality",
+            "Name": "Tswelopele Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Tygerberg Health sub-District",
+            "Label": "Tygerberg Health sub-District",
+            "Name": "Tygerberg Health sub-District"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Ubuhlebezwe Local Municipality",
+            "Label": "Ubuhlebezwe Local Municipality",
+            "Name": "Ubuhlebezwe Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Ulundi Local Municipality",
+            "Label": "Ulundi Local Municipality",
+            "Name": "Ulundi Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Umdoni Local Municipality",
+            "Label": "Umdoni Local Municipality",
+            "Name": "Umdoni Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "uMfolozi Local Municipality",
+            "Label": "uMfolozi Local Municipality",
+            "Name": "uMfolozi Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "uMlalazi Local Municipality",
+            "Label": "uMlalazi Local Municipality",
+            "Name": "uMlalazi Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "uMngeni Local Municipality",
+            "Label": "uMngeni Local Municipality",
+            "Name": "uMngeni Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "uMshwathi Local Municipality",
+            "Label": "uMshwathi Local Municipality",
+            "Name": "uMshwathi Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "uMuziwabantu Local Municipality",
+            "Label": "uMuziwabantu Local Municipality",
+            "Name": "uMuziwabantu Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Umzimkhulu Local Municipality",
+            "Label": "Umzimkhulu Local Municipality",
+            "Name": "Umzimkhulu Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Umzimvubu Local Municipality",
+            "Label": "Umzimvubu Local Municipality",
+            "Name": "Umzimvubu Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Umzumbe Local Municipality",
+            "Label": "Umzumbe Local Municipality",
+            "Name": "Umzumbe Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "uPhongolo Local Municipality",
+            "Label": "uPhongolo Local Municipality",
+            "Name": "uPhongolo Local Municipality"
+        },
+        {
+            "ViewName": "subdistricts",
+            "Display": "Victor Khanye Local Municipality",
+            "Label": "Victor Khanye Local Municipality",
+            "Name": "Victor Khanye Local Municipality"
+        }
+    ]
+}

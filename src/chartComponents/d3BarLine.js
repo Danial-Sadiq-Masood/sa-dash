@@ -1,9 +1,14 @@
 import * as d3 from "d3";
 import data from './data1.json'
 
-import { createMachine, createActor, setup } from 'xstate';
+const dataFiltered = data.slice(4)
 
-console.log(data)
+import { createMachine, createActor, setup, assign } from 'xstate';
+
+const machineEvents = {
+    'DATA_LOADED': 'DATA_LOADED',
+    'CHART_DRAWN': 'CHART_DRAWN'
+}
 
 function createBarChartMachine({
     dataLoaded,
@@ -12,38 +17,60 @@ function createBarChartMachine({
     rootNode
 }) {
 
-    const d3Root = d3.select(rootNode);
-
-    const initState = dataLoaded ? 'loaded' : 'loading';
+    const initState = 'loading';
 
     const barChartMachine = setup({
+
         actions: {
-            create_chart: ({ self }) => {
+            create_chart: ({ context, self, event }) => {
+                //console.log(context);
+                //console.log(self);
+                console.log(event);
                 buildChart(
                     setShowTooltip,
                     setTooltipData,
                     rootNode,
-                    self
-                )
+                    self,
+                    event.data
+                );
+                self.send({
+                    type: machineEvents.CHART_DRAWN
+                })
             }
         }
     })
         .createMachine({
             id: 'barChartMachine',
             initial: initState,
+            context : {
+                chartData : data,
+                filteredData : data
+            },
             states: {
-                loading: {
+                'loading': {
                     on: {
                         'DATA_LOADED': {
+                            target: 'drawing'
+                        }
+                    },
+                },
+                'drawing': {
+                    entry: {
+                        type: 'create_chart'
+                    },
+                    on: {
+                        'CHART_DRAWN': {
                             target: 'loaded'
                         }
                     }
                 },
-                loaded: {
-                    entry: {
-                        type: 'create_chart'
-                    },
+                'loaded': {
                     type: 'parallel',
+                    on: {
+                        'DATA_LOADING': {
+                            target: 'loading_filtered_data'
+                        }
+                    },
                     states: {
                         hover: {
                             initial: 'not_hovering',
@@ -57,8 +84,8 @@ function createBarChartMachine({
                                     entry: ({ event }) => {
                                         if (event.data) {
                                             event.data.rows = [
-                                                {name : 'Facilities Assesed', val : event.data.Assessed},
-                                                {name : 'Percentage Complete', val : event.data.PercentageComplete + '%'}
+                                                { name: 'Facilities Assesed', val: event.data.Assessed },
+                                                { name: 'Percentage Complete', val: event.data.PercentageComplete + '%' }
                                             ]
                                             setTooltipData({
                                                 position: event.position,
@@ -71,6 +98,8 @@ function createBarChartMachine({
                                             event.nodesToFade
                                                 .style('opacity', 0.6)
                                         }
+
+                                        const d3Root = d3.select(rootNode.current);
 
                                         event.idsToFade.forEach(d => {
                                             d3Root.select(d.id)
@@ -86,6 +115,8 @@ function createBarChartMachine({
                                     },
                                     entry: () => {
                                         setShowTooltip(false);
+
+                                        const d3Root = d3.select(rootNode.current);
 
                                         d3Root.select('#line')
                                             .style('opacity', 1)
@@ -106,13 +137,35 @@ function createBarChartMachine({
                             initial: 'not_filtered',
                             states: {
                                 filtered: {
+                                    entry : ({context, self})=>{
+                                        console.log('Entering filtered state')
 
+                                        rootNode.current.replaceChildren();
+
+                                        buildChart(
+                                            setShowTooltip,
+                                            setTooltipData,
+                                            rootNode,
+                                            self,
+                                            context.filteredData
+                                        );
+                                    }
                                 },
                                 not_filtered: {
                                 }
                             }
                         }
                     }
+                },
+                'loading_filtered_data': {
+                    on: {
+                        'DATA_LOADED': {
+                            target: ['loaded.hover.not_hovering', 'loaded.filter.filtered']
+                        }
+                    },
+                    exit: assign({
+                        filteredData : ()=>dataFiltered
+                    })
                 }
             },
         });
@@ -125,17 +178,20 @@ function createBarChartMachine({
         }
     });*/
 
-    window.machine = actor;
-
     return actor;
-
 }
 
 export { createBarChartMachine };
 
 //console.log(feedbackMachine)
 
-function buildChart(setShowTooltip, setTooltipData, rootNode, actorService) {
+function buildChart(
+    setShowTooltip, 
+    setTooltipData, 
+    rootNode, 
+    actorService,
+    chartData
+) {
     const margin = ({ top: 20, right: 100, bottom: 30, left: 100 })
     const height = 500
     const width = 856
@@ -164,7 +220,7 @@ function buildChart(setShowTooltip, setTooltipData, rootNode, actorService) {
             .text(data.y1))
 
     const x = d3.scaleBand()
-        .domain(data.map((d, i) => d.ProvinceName))
+        .domain(chartData.map((d, i) => d.ProvinceName))
         .rangeRound([margin.left, width - margin.right])
         .padding(0.1)
 
@@ -174,11 +230,11 @@ function buildChart(setShowTooltip, setTooltipData, rootNode, actorService) {
             .tickSizeOuter(0))
 
     const y2 = d3.scaleLinear()
-        .domain(d3.extent(data, d => d.PercentageComplete))
+        .domain(d3.extent(chartData, d => d.PercentageComplete))
         .rangeRound([height - margin.bottom, margin.top])
 
     const y1 = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d.Assessed)])
+        .domain([0, d3.max(chartData, d => d.Assessed)])
         .rangeRound([height - margin.bottom, margin.top])
 
     const line = d3.line()
@@ -193,7 +249,7 @@ function buildChart(setShowTooltip, setTooltipData, rootNode, actorService) {
         .attr("fill", "#606c38")
         .attr("fill-opacity", 0.8)
         .selectAll("rect")
-        .data(data)
+        .data(chartData)
         .join("rect")
         .attr("x", d => x(d.ProvinceName))
         .attr("width", x.bandwidth())
@@ -224,7 +280,7 @@ function buildChart(setShowTooltip, setTooltipData, rootNode, actorService) {
         .attr("stroke", "#283618")
         .attr("stroke-miterlimit", 1)
         .attr("stroke-width", 3)
-        .attr("d", line(data))
+        .attr("d", line(chartData))
         .on("mouseover", (d) => {
             actorService.send({
                 type: 'mouseover',
@@ -244,7 +300,7 @@ function buildChart(setShowTooltip, setTooltipData, rootNode, actorService) {
         .attr("fill", "white")
         .attr("fill-opacity", 1)
         .selectAll("circle")
-        .data(data)
+        .data(chartData)
         .join("circle")
         .attr("stroke", "#283618")
         .attr("stroke-width", 1.5)
@@ -279,7 +335,7 @@ function buildChart(setShowTooltip, setTooltipData, rootNode, actorService) {
 
     svg.selectAll('text').attr('class', 'barChartText')
 
-    rootNode.appendChild(svg.node());
+    rootNode.current.appendChild(svg.node());
 
     console.log('building chart');
 }

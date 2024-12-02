@@ -1,3 +1,7 @@
+import { useEffect, useRef } from "react";
+import { createRadialChartMachine } from "./d3RadarChart"
+import { Spinner } from "@/components/ui/spinner.jsx"
+
 import {
     Card,
     CardContent,
@@ -7,22 +11,18 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 
-import { Spinner } from "@/components/ui/spinner.jsx"
 
-import { useRef, useEffect, useState, act } from "react"
-import { createBarChartMachine } from './d3BarLine.js'
-
-export default function ChartHolder({
+export default function RadialChartHolder({
     setShowTooltip,
     setTooltipData,
     loadingData,
     data
 }) {
 
-    const ref = useRef()
+    const ref = useRef();
 
-    const actor = useRef(createBarChartMachine({
-        dataLoaded: loadingData,
+    const actor = useRef(createRadialChartMachine({
+        dataLoaded: true,
         setShowTooltip,
         setTooltipData,
         rootNode: ref
@@ -32,19 +32,18 @@ export default function ChartHolder({
         () => {
             actor.current.start();
 
-            window.machine = actor.current;
+            window.radarMachine = actor.current;
         }
         , [])
 
     useEffect(
         () => {
-            console.log(data);
             if (!loadingData) {
                 actor.current.send({
                     type: 'DATA_LOADED',
                     data : data
                 })
-            }else{
+            } else {
                 actor.current.send({
                     type: 'DATA_LOADING'
                 })
@@ -58,7 +57,7 @@ export default function ChartHolder({
                 <CardTitle className="text-left text-lg">Public Health Facilities</CardTitle>
                 <CardDescription className="text-left">SPI-RT Assessments</CardDescription>
             </CardHeader>
-            <CardContent className="relative min-h-[500px]">
+            <CardContent className="relative min-h-[200px] py-0">
                 {
                     loadingData
                     &&
@@ -74,7 +73,7 @@ export default function ChartHolder({
                         </div>
                     </div>
                 }
-                <div className="w-[856px] font-sans" ref={ref}>
+                <div className="font-sans" ref={ref}>
                 </div>
             </CardContent>
         </Card>
