@@ -18,13 +18,15 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-import { useQuery, QueryClient, QueryClientProvider } from 'react-query'
+import { useQueries, QueryClient, QueryClientProvider } from 'react-query'
 import axios from 'axios'
 
 import Select from 'react-select';
 
 import { Button } from "@/components/ui/button";
 import { Filter } from 'lucide-react';
+
+import DataTable from './DataTable/DataTable'
 
 
 const options = [
@@ -47,31 +49,50 @@ function MainApp() {
 
   const [showTooltip, setShowTooltip] = useState(false);
   const [toolTipData, setTooltipData] = useState({ data: { rows: [] } });
-  const [loadingData, setLoadingData] = useState(true)
-
-  const comboBoxQuery = useQuery('comboboxData', () => {
-    return axios.get('http://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/GetProvinceFacilityData')
-  })
-
-  const radialChartQuery = useQuery('radialChartData', () => {
-    return axios.get('http://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/GetPartCScoreData')
-  })
-
-  const gaugeChartQuery = useQuery('gaugeChartData', () => {
-    return axios.get('http://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/ChartGaugeFacilitiesCompleted_aND8ZzKsyrprAQy84oi8z3')
-  })
-
-  window.setLoadingData = setLoadingData
-
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      setLoadingData(false)
-    }, 3000)
-
-    return () => {
-      clearTimeout(timerId);
+  const [queries, setQueries] = useState([
+    {
+      url: 'http://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/GetProvinceFacilityData',
+      params: [],
+      key: 'comboBoxQ'
+    },
+    {
+      url: 'http://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/GetPartCScoreData',
+      params: [],
+      key: 'radialChartQ'
+    },
+    {
+      url: 'http://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/ChartGaugeFacilitiesCompleted_aND8ZzKsyrprAQy84oi8z3',
+      params: [],
+      key: 'gaugeChartQ'
+    },
+    {
+      url: 'https://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/ChartDistrictLevels_aND8ZzKsyrprAQy84oi8z3',
+      params: [],
+      key: 'districtTableQ'
     }
-  }, []);
+  ]);
+
+  const dataQueries = useQueries(
+    queries.map(d => {
+      const queryParams = d.params || [];
+      return {
+        queryKey: [d.key, ...queryParams],
+        queryFn: () => axios.get(d.url)
+      }
+    })
+  )
+
+  window.setQueries = setQueries;
+
+  console.log(dataQueries);
+
+  const comboBoxQuery = dataQueries[0];
+
+  const radialChartQuery = dataQueries[1];
+
+  const gaugeChartQuery = dataQueries[2];
+
+  const districtTableQuery = dataQueries[3];
 
   return (
     <div className="flex flex-col gap-6 w-full">
@@ -110,6 +131,19 @@ function MainApp() {
                 data={comboBoxQuery.data?.data}
               />
             </div>
+            <Card className="">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-m font-medium">
+                  Table
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <DataTable
+                  data={districtTableQuery.data?.data?.data}
+                  loadedTable={!districtTableQuery.isLoading}
+                />
+              </CardContent>
+            </Card>
           </TabsContent>
           <TabsContent value="table">
           </TabsContent>
