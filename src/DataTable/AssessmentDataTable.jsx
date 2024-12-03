@@ -193,7 +193,7 @@ function DataTable({ table }) {
                             const { column } = header;
                             const minSize = header.getSize();
                             return (
-                                <TableHead key={header.id} style={{ minWidth: minSize }} >
+                                <TableHead key={header.id} >
                                     {header.isPlaceholder
                                         ? null
                                         : flexRender(

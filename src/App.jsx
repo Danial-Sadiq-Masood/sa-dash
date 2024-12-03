@@ -30,12 +30,10 @@ import DistrictDataTable from './DataTable/DataTable';
 
 import AssessmentDataTable from './DataTable/AssessmentDataTable';
 
-
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
-]
+import districts from "./multiselect/districts.json"
+import dsp from "./multiselect/dsp.json"
+import provinces from "./multiselect/provinces.json"
+import subdistricts from "./multiselect/subdistricts.json"
 
 const queryClient = new QueryClient()
 
@@ -108,8 +106,8 @@ function MainApp() {
       <div className="flex items-center justify-between space-y-2">
         <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
       </div>
-      <div className='grid grid-cols-5 auto-rows-auto	gap-6'>
-        <Tabs defaultValue="overview" className="space-y-4 text-left col-start-1 col-span-4">
+      <div className='grid grid-cols-4 auto-rows-auto	gap-6'>
+        <Tabs defaultValue="overview" className="space-y-4 text-left col-start-1 col-span-3">
           <TabsList>
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="table">
@@ -170,7 +168,7 @@ function MainApp() {
           <TabsContent value="table">
           </TabsContent>
         </Tabs>
-        <div className="col-start-5 col-span-1 h-fit flex flex-col gap-4 sticky top-4">
+        <div className="col-start-4 col-span-1 h-fit flex flex-col gap-4 sticky top-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-m font-medium">
@@ -180,23 +178,23 @@ function MainApp() {
             <CardContent>
               <div className='flex flex-col gap-4'>
                 <MultiSelect
-                  options={options}
+                  options={dsp.data.map(d => ({value : d.Name, label : d.Name}))}
                   label="Organisation"
                 />
                 <MultiSelect
-                  options={options}
+                  options={provinces.data.map(d => ({value : d.Name, label : d.Name}))}
                   label="Province"
                 />
                 <MultiSelect
-                  options={options}
+                  options={districts.data.map(d => ({value : d.Name, label : d.Name}))}
                   label="District"
                 />
                 <MultiSelect
-                  options={options}
+                  options={subdistricts.data.map(d => ({value : d.Name, label : d.Name}))}
                   label="Sub-District"
                 />
                 <MultiSelect
-                  options={options}
+                  options={[1,2,3]}
                   label="Assesment Occurrence"
                 />
                 <div className="flex flex-col gap-2">
