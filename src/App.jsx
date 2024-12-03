@@ -51,17 +51,17 @@ function MainApp() {
   const [toolTipData, setTooltipData] = useState({ data: { rows: [] } });
   const [queries, setQueries] = useState([
     {
-      url: 'http://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/GetProvinceFacilityData',
+      url: 'https://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/GetProvinceFacilityData',
       params: [],
       key: 'comboBoxQ'
     },
     {
-      url: 'http://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/GetPartCScoreData',
+      url: 'https://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/GetPartCScoreData',
       params: [],
       key: 'radialChartQ'
     },
     {
-      url: 'http://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/ChartGaugeFacilitiesCompleted_aND8ZzKsyrprAQy84oi8z3',
+      url: 'https://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/ChartGaugeFacilitiesCompleted_aND8ZzKsyrprAQy84oi8z3',
       params: [],
       key: 'gaugeChartQ'
     },
