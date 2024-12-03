@@ -26,7 +26,9 @@ import Select from 'react-select';
 import { Button } from "@/components/ui/button";
 import { Filter } from 'lucide-react';
 
-import DataTable from './DataTable/DataTable'
+import DistrictDataTable from './DataTable/DataTable';
+
+import AssessmentDataTable from './DataTable/AssessmentDataTable';
 
 
 const options = [
@@ -69,6 +71,11 @@ function MainApp() {
       url: 'https://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/ChartDistrictLevels_aND8ZzKsyrprAQy84oi8z3',
       params: [],
       key: 'districtTableQ'
+    },
+    {
+      url: 'https://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/ChartDistrictFacilitiesCompleted_aND8ZzKsyrprAQy84oi8z3',
+      params: [],
+      key: 'assessmentTableQ'
     }
   ]);
 
@@ -94,12 +101,14 @@ function MainApp() {
 
   const districtTableQuery = dataQueries[3];
 
+  const assessmentTableQuery = dataQueries[4];
+
   return (
     <div className="flex flex-col gap-6 w-full">
       <div className="flex items-center justify-between space-y-2">
         <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
       </div>
-      <div className='grid grid-cols-5 auto-rows-auto	gap-4'>
+      <div className='grid grid-cols-5 auto-rows-auto	gap-6'>
         <Tabs defaultValue="overview" className="space-y-4 text-left col-start-1 col-span-4">
           <TabsList>
             <TabsTrigger value="overview">Overview</TabsTrigger>
@@ -108,18 +117,32 @@ function MainApp() {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="overview" className="space-y-4">
-            <div className="flex gap-4 items-start">
-              <RadialChart
-                key={2}
-                setShowTooltip={setShowTooltip}
-                setTooltipData={setTooltipData}
-                loadingData={radialChartQuery.isLoading}
-                data={radialChartQuery.data?.data}
-              />
-              <GaugeChart
-                loadingData={gaugeChartQuery.isLoading}
-                data={gaugeChartQuery.data?.data}
-              />
+            <div className="grid grid-cols-3 auto-rows-auto gap-4 items-start">
+              <div className='col-start-1 col-span-1 flex flex-col gap-4'>
+                <RadialChart
+                  key={2}
+                  setShowTooltip={setShowTooltip}
+                  setTooltipData={setTooltipData}
+                  loadingData={radialChartQuery.isLoading}
+                  data={radialChartQuery.data?.data}
+                />
+                <GaugeChart
+                  loadingData={gaugeChartQuery.isLoading}
+                  data={gaugeChartQuery.data?.data}
+                />
+              </div>
+              <Card className="col-start-2 col-span-2">
+                <CardHeader className="bg-[#f7fbff]">
+                  <CardTitle className="text-left text-lg">Public Health Facilities</CardTitle>
+                  <CardDescription className="text-left">SPI-RT Assessments</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <AssessmentDataTable
+                    data={assessmentTableQuery.data?.data?.data}
+                    loadedTable={!assessmentTableQuery.isLoading}
+                  />
+                </CardContent>
+              </Card>
             </div>
             <div>
               <Tooltip showTooltip={showTooltip} toolTipData={toolTipData} />
@@ -132,13 +155,12 @@ function MainApp() {
               />
             </div>
             <Card className="">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-m font-medium">
-                  Table
-                </CardTitle>
+              <CardHeader className="bg-[#f7fbff]">
+                <CardTitle className="text-left text-lg">Public Health Facilities</CardTitle>
+                <CardDescription className="text-left">SPI-RT Assessments</CardDescription>
               </CardHeader>
               <CardContent>
-                <DataTable
+                <DistrictDataTable
                   data={districtTableQuery.data?.data?.data}
                   loadedTable={!districtTableQuery.isLoading}
                 />
@@ -148,43 +170,45 @@ function MainApp() {
           <TabsContent value="table">
           </TabsContent>
         </Tabs>
-        <Card className="col-start-5 col-span-1 h-fit sticky top-10">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-m font-medium">
-              Filters
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className='flex flex-col gap-4'>
-              <MultiSelect
-                options={options}
-                label="Organisation"
-              />
-              <MultiSelect
-                options={options}
-                label="Province"
-              />
-              <MultiSelect
-                options={options}
-                label="District"
-              />
-              <MultiSelect
-                options={options}
-                label="Sub-District"
-              />
-              <MultiSelect
-                options={options}
-                label="Assesment Occurrence"
-              />
-              <div className="flex flex-col gap-2">
-                <Button>
-                  <Filter />
-                  Apply Filter
-                </Button>
+        <div className="col-start-5 col-span-1 h-fit flex flex-col gap-4 sticky top-4">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-m font-medium">
+                Filters
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className='flex flex-col gap-4'>
+                <MultiSelect
+                  options={options}
+                  label="Organisation"
+                />
+                <MultiSelect
+                  options={options}
+                  label="Province"
+                />
+                <MultiSelect
+                  options={options}
+                  label="District"
+                />
+                <MultiSelect
+                  options={options}
+                  label="Sub-District"
+                />
+                <MultiSelect
+                  options={options}
+                  label="Assesment Occurrence"
+                />
+                <div className="flex flex-col gap-2">
+                  <Button>
+                    <Filter />
+                    Apply Filter
+                  </Button>
+                </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   )

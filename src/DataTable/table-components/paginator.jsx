@@ -30,7 +30,7 @@ import {
                 <SelectValue placeholder={table.getState().pagination.pageSize} />
               </SelectTrigger>
               <SelectContent side="top">
-                {[3, 5, 10].map(pageSize => (
+                {[10, 20, 30].map(pageSize => (
                   <SelectItem key={pageSize} value={`${pageSize}`}>
                     {pageSize}
                   </SelectItem>

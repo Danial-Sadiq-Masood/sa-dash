@@ -75,67 +75,37 @@ export default function DataTableDemo({ data = [], loadedTable }) {
 
                 },
                 {
-                    accessorKey: "Level0",
-                    id: "Level 0",
-                    header: ({ column }) => <ColumnHeader column={column} title="Level 0" />,
-                    cell: ({ row }) => <div className="capitalize">{row.getValue("Level 0")}</div>,
-                    size: 100,
+                    accessorKey: "TotalFacilities",
+                    id: "Total Facilities",
+                    header: ({ column }) => <ColumnHeader column={column} title="Total Facilities" />,
+                    cell: ({ row }) => <div className="capitalize">{row.getValue("Total Facilities")}</div>,
+                    size: 120,
                     enableSorting: true
                 },
                 {
-                    accessorKey: "Level1",
-                    id: "Level 1",
-                    header: ({ column }) => <ColumnHeader column={column} title="Level 1" />,
-                    cell: ({ row }) => <div className="capitalize">{row.getValue("Level 1")}</div>,
-                    size: 100,
+                    accessorKey: "Assessed",
+                    id: "Assessed",
+                    header: ({ column }) => <ColumnHeader column={column} title="Assessed" />,
+                    cell: ({ row }) => <div className="capitalize">{row.getValue("Assessed")}</div>,
+                    size: 120,
                     enableSorting: true
                 },
                 {
-                    accessorKey: "Level2",
-                    id: "Level 2",
-                    header: ({ column }) => <ColumnHeader column={column} title="Level 2" />,
-                    cell: ({ row }) => <div className="capitalize">{row.getValue("Level 2")}</div>,
-                    size: 100,
+                    accessorKey: "PercentageComplete",
+                    id: "Percentage Complete",
+                    header: ({ column }) => <ColumnHeader column={column} title="Percentage Complete" />,
+                    cell: ({ row }) => <div className="capitalize">{row.getValue("Percentage Complete")}</div>,
+                    size: 120,
                     enableSorting: true
                 },
                 {
-                    accessorKey: "Level3",
-                    id: "Level 3",
-                    header: ({ column }) => <ColumnHeader column={column} title="Level 3" />,
-                    cell: ({ row }) => <div className="capitalize">{row.getValue("Level 3")}</div>,
+                    accessorKey: "Duplicates",
+                    id: "Duplicates",
+                    header: ({ column }) => <ColumnHeader column={column} title="Duplicates" />,
+                    cell: ({ row }) => <div className="capitalize">{row.getValue("Duplicates")}</div>,
                     size: 100,
                     enableSorting: true
-                },
-                {
-                    accessorKey: "Level4",
-                    id: "Level 4",
-                    header: ({ column }) => <ColumnHeader column={column} title="Level 4" />,
-                    cell: ({ row }) => <div className="capitalize">{row.getValue("Level 4")}</div>,
-                    size: 100,
-                    enableSorting: true
-                },
-                {
-                    id: "Level 5",
-                    header: ({ column }) => <ColumnHeader column={column} title="Total" />,
-                    cell: ({ row }) => {
-
-                        const level0 = row.getValue("Level 0");
-                        const level1 = row.getValue("Level 1");
-                        const level2 = row.getValue("Level 2");
-                        const level3 = row.getValue("Level 3");
-                        const level4 = row.getValue("Level 4");
-
-                        const total = level0 + level1 + level2 + level3 + level4;
-
-                        return (
-                            <div className="capitalize">
-                                {total}
-                            </div>
-                        )
-                    },
-                    size: 100,
-                    enableSorting: true
-                },
+                }
             ]
         },
         [loadedTable]
