@@ -15,10 +15,12 @@ import { createBarChartMachine } from './d3BarLine.js'
 export default function ChartHolder({
     setShowTooltip,
     setTooltipData,
-    loadingData,
-    data
+    status,
+    data,
+    dataUpdatedAt
 }) {
 
+    const loadingData = status === 'loading'
     const ref = useRef()
 
     const actor = useRef(createBarChartMachine({
@@ -38,19 +40,18 @@ export default function ChartHolder({
 
     useEffect(
         () => {
-            console.log(data);
-            if (!loadingData) {
+            if (status === 'success') {
                 actor.current.send({
                     type: 'DATA_LOADED',
-                    data : data
+                    data: data
                 })
-            }else{
+            } else if (status === 'loading') {
                 actor.current.send({
                     type: 'DATA_LOADING'
                 })
             }
         }
-        , [loadingData])
+        , [loadingData, dataUpdatedAt])
 
     return (
         <Card>

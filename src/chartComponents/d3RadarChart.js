@@ -61,7 +61,10 @@ function createRadialChartMachine({
                     on: {
                         'DATA_LOADING': {
                             target: 'loading_filtered_data'
-                        }
+                        },
+                        'DATA_LOADED': {
+                            target: 'drawing'
+                        },
                     },
                     states: {
                         hover: {
@@ -140,11 +143,11 @@ function createRadialChartMachine({
                 'loading_filtered_data': {
                     on: {
                         'DATA_LOADED': {
-                            target: ['loaded.hover.not_hovering', 'loaded.filter.filtered']
+                            target: ['drawing']
                         }
                     },
                     exit: () => {
-                        console.log('exiting')
+                        console.log('exiting loading filtered data')
                     }
                 }
             },
@@ -158,6 +161,10 @@ function createRadialChartMachine({
 export { createRadialChartMachine };
 
 export default function buildChart(rootNode, points) {
+
+    rootNode.current.replaceChildren();
+
+    console.log(points, 'radar plot points');
 
     points = points.map(d => ({...d,MetricValue : d.MetricValue / 100}))
 

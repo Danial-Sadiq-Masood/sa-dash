@@ -77,7 +77,7 @@ export default function DataTableDemo({ data = [], loadedTable }) {
                 {
                     accessorKey: "Level0",
                     id: "Level 0",
-                    header: ({ column }) => <ColumnHeader column={column} title="Level 0" />,
+                    header: ({ column }) => <ColumnHeader className="bg-[#FF0000] text-black" column={column} title="Level 0" />,
                     cell: ({ row }) => <div className="capitalize">{row.getValue("Level 0")}</div>,
                     size: 100,
                     enableSorting: true
@@ -85,7 +85,7 @@ export default function DataTableDemo({ data = [], loadedTable }) {
                 {
                     accessorKey: "Level1",
                     id: "Level 1",
-                    header: ({ column }) => <ColumnHeader column={column} title="Level 1" />,
+                    header: ({ column }) => <ColumnHeader className="bg-[#FFC000] text-black" column={column} title="Level 1" />,
                     cell: ({ row }) => <div className="capitalize">{row.getValue("Level 1")}</div>,
                     size: 100,
                     enableSorting: true
@@ -93,7 +93,7 @@ export default function DataTableDemo({ data = [], loadedTable }) {
                 {
                     accessorKey: "Level2",
                     id: "Level 2",
-                    header: ({ column }) => <ColumnHeader column={column} title="Level 2" />,
+                    header: ({ column }) => <ColumnHeader className="bg-[#FFC000] text-black" column={column} title="Level 2" />,
                     cell: ({ row }) => <div className="capitalize">{row.getValue("Level 2")}</div>,
                     size: 100,
                     enableSorting: true
@@ -101,7 +101,7 @@ export default function DataTableDemo({ data = [], loadedTable }) {
                 {
                     accessorKey: "Level3",
                     id: "Level 3",
-                    header: ({ column }) => <ColumnHeader column={column} title="Level 3" />,
+                    header: ({ column }) => <ColumnHeader className="bg-[#FFFF00] text-black" column={column} title="Level 3" />,
                     cell: ({ row }) => <div className="capitalize">{row.getValue("Level 3")}</div>,
                     size: 100,
                     enableSorting: true
@@ -109,14 +109,14 @@ export default function DataTableDemo({ data = [], loadedTable }) {
                 {
                     accessorKey: "Level4",
                     id: "Level 4",
-                    header: ({ column }) => <ColumnHeader column={column} title="Level 4" />,
+                    header: ({ column }) => <ColumnHeader className="bg-[#92D050] text-black" column={column} title="Level 4" />,
                     cell: ({ row }) => <div className="capitalize">{row.getValue("Level 4")}</div>,
                     size: 100,
                     enableSorting: true
                 },
                 {
                     id: "Level 5",
-                    header: ({ column }) => <ColumnHeader column={column} title="Total" />,
+                    header: ({ column }) => <ColumnHeader className="pl-2" column={column} title="Total" />,
                     cell: ({ row }) => {
 
                         const level0 = row.getValue("Level 0");
@@ -173,14 +173,18 @@ export default function DataTableDemo({ data = [], loadedTable }) {
             <div className="flex items-center justify-between py-4">
                 <div className="flex flex-1 items-center space-x-2">
                     <div className="flex items-center py-4 min-w-[300px]">
-                        <Input
-                            placeholder="Filter District..."
-                            value={(table.getColumn("District")?.getFilterValue()) ?? ""}
-                            onChange={(event) =>
-                                table.getColumn("District")?.setFilterValue(event.target.value)
-                            }
-                            className="max-w-sm"
-                        />
+                        {
+                            loadedTable
+                            &&
+                            <Input
+                                placeholder="Filter District..."
+                                value={(table.getColumn("District")?.getFilterValue()) ?? ""}
+                                onChange={(event) =>
+                                    table.getColumn("District")?.setFilterValue(event.target.value)
+                                }
+                                className="max-w-sm"
+                            />
+                        }
                     </div>
                 </div>
                 <div className="flex items-center space-x-2">
@@ -223,7 +227,7 @@ function DataTable({ table }) {
                             const { column } = header;
                             const minSize = header.getSize();
                             return (
-                                <TableHead key={header.id} style={{ minWidth: minSize }} >
+                                <TableHead className="px-0" key={header.id} style={{ minWidth: minSize }} >
                                     {header.isPlaceholder
                                         ? null
                                         : flexRender(

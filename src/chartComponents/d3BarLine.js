@@ -69,6 +69,9 @@ function createBarChartMachine({
                     on: {
                         'DATA_LOADING': {
                             target: 'loading_filtered_data'
+                        },
+                        'DATA_LOADED': {
+                            target: ['loaded.hover.not_hovering', 'loaded.filter.filtered']
                         }
                     },
                     states: {
@@ -137,9 +140,9 @@ function createBarChartMachine({
                             initial: 'not_filtered',
                             states: {
                                 filtered: {
-                                    entry : ({context, self})=>{
-                                        console.log('Entering filtered state')
-
+                                    entry : ({context, self, event})=>{
+                                        console.log('Entering filtered state line')
+                                        console.log(context.filteredData, 'fd line')
                                         rootNode.current.replaceChildren();
 
                                         buildChart(
@@ -147,7 +150,7 @@ function createBarChartMachine({
                                             setTooltipData,
                                             rootNode,
                                             self,
-                                            context.filteredData
+                                            event.data
                                         );
                                     }
                                 },
@@ -162,10 +165,7 @@ function createBarChartMachine({
                         'DATA_LOADED': {
                             target: ['loaded.hover.not_hovering', 'loaded.filter.filtered']
                         }
-                    },
-                    exit: assign({
-                        filteredData : ()=>dataFiltered
-                    })
+                    }
                 }
             },
         });

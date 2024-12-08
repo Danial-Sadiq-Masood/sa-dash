@@ -15,10 +15,14 @@ import {
 export default function RadialChartHolder({
     setShowTooltip,
     setTooltipData,
-    loadingData,
-    data
+    status,
+    data,
+    filtersChanged,
+    dataUpdatedAt
 }) {
 
+    console.log(status, 'status')
+    const loadingData = status === 'loading'
     const ref = useRef();
 
     const actor = useRef(createRadialChartMachine({
@@ -38,24 +42,30 @@ export default function RadialChartHolder({
 
     useEffect(
         () => {
-            if (!loadingData) {
+            
+            if (status === 'success') {
+                data.unshift(data.pop()); //fix this later
+                console.log('radial data->', data)
                 actor.current.send({
                     type: 'DATA_LOADED',
-                    data : data
+                    data: data
                 })
-            } else {
+            } else if (status === 'loading') {
                 actor.current.send({
                     type: 'DATA_LOADING'
                 })
             }
         }
-        , [loadingData])
+        , [loadingData, dataUpdatedAt])
 
     return (
         <Card>
             <CardHeader className="bg-[#f7fbff]">
                 <CardTitle className="text-left text-lg">Public Health Facilities</CardTitle>
-                <CardDescription className="text-left">SPI-RT Assessments</CardDescription>
+                <CardDescription className="text-left">SPI-RT Assessments
+                    <br />
+                    (Average domain %)
+                </CardDescription>
             </CardHeader>
             <CardContent className="relative min-h-[200px] py-0">
                 {

@@ -47,7 +47,7 @@ export default function Gauge({loadingData, data}) {
         <Card>
             <CardHeader className="bg-[#f7fbff]">
                 <CardTitle className="text-left text-lg">Public Health Facilities</CardTitle>
-                <CardDescription className="text-left">SPI-RT Assessments</CardDescription>
+                <CardDescription className="text-left">Assessment Progress</CardDescription>
             </CardHeader>
             <CardContent className="flex-1 pt-4 pb-2 relative">
             {

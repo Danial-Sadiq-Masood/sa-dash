@@ -143,14 +143,17 @@ export default function DataTableDemo({ data = [], loadedTable }) {
             <div className="flex items-center justify-between py-4">
                 <div className="flex flex-1 items-center space-x-2">
                     <div className="flex items-center py-4 min-w-[300px]">
-                        <Input
-                            placeholder="Filter District..."
-                            value={(table.getColumn("District")?.getFilterValue()) ?? ""}
-                            onChange={(event) =>
-                                table.getColumn("District")?.setFilterValue(event.target.value)
-                            }
-                            className="max-w-sm"
-                        />
+                        {loadedTable
+                            &&
+                            <Input
+                                placeholder="Filter District..."
+                                value={(table.getColumn("District")?.getFilterValue()) ?? ""}
+                                onChange={(event) =>
+                                    table.getColumn("District")?.setFilterValue(event.target.value)
+                                }
+                                className="max-w-sm"
+                            />
+                        }
                     </div>
                 </div>
                 <div className="flex items-center space-x-2">

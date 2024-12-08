@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -30,11 +30,6 @@ import DistrictDataTable from './DataTable/DataTable';
 
 import AssessmentDataTable from './DataTable/AssessmentDataTable';
 
-import districts from "./multiselect/districts.json"
-import dsp from "./multiselect/dsp.json"
-import provinces from "./multiselect/provinces.json"
-import subdistricts from "./multiselect/subdistricts.json"
-
 const queryClient = new QueryClient()
 
 function App() {
@@ -49,7 +44,30 @@ function MainApp() {
 
   const [showTooltip, setShowTooltip] = useState(false);
   const [toolTipData, setTooltipData] = useState({ data: { rows: [] } });
-  const [queries, setQueries] = useState([
+
+  const [filters, setFilters] = useState({
+    dsp: [],
+    province: [],
+    district: [],
+    subDistrict: [],
+  });
+
+  const previousFilters = useRef(filters);
+
+  useEffect(() => {
+    previousFilters.current = filters;
+  }, [filters])
+
+  const filtersChanged = JSON.stringify(previousFilters.current) !== JSON.stringify(filters);
+
+  const updateFilters = (key, val) => {
+    setFilters({
+      ...filters,
+      [key]: val
+    });
+  };
+
+  const filterQueries = [
     {
       url: 'https://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/GetProvinceFacilityData',
       params: [],
@@ -74,20 +92,102 @@ function MainApp() {
       url: 'https://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/ChartDistrictFacilitiesCompleted_aND8ZzKsyrprAQy84oi8z3',
       params: [],
       key: 'assessmentTableQ'
+    },
+  ];
+
+  filterQueries.forEach(d => {
+    d.params = [
+      {
+        key: 'dsp',
+        val: filters.dsp
+      },
+      {
+        key: 'province',
+        val: filters.province
+      },
+      {
+        key: 'districts',
+        val: filters.district
+      },
+      {
+        key: 'subdistricts',
+        val: filters.subDistrict
+      },
+    ]
+  })
+
+  const dropDownQueries = [
+    {
+      url: 'https://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/GetFilterData',
+      params: [
+        {
+          key: 'viewName',
+          val: 'dsp'
+        }
+      ],
+      key: 'populateSelectQ'
+    },
+    {
+      url: 'https://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/GetFilterData',
+      params: [
+        {
+          key: 'viewName',
+          val: 'provinces'
+        }
+      ],
+      key: 'populateSelectQ'
+    },
+    {
+      url: 'https://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/GetFilterData',
+      params: [
+        {
+          key: 'viewName',
+          val: 'districts'
+        }
+      ],
+      key: 'populateSelectQ'
+    },
+    {
+      url: 'https://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/GetFilterData',
+      params: [
+        {
+          key: 'viewName',
+          val: 'subdistricts'
+        }
+      ],
+      key: 'populateSelectQ'
     }
-  ]);
+  ];
+
+  const queries = [
+    ...filterQueries,
+    ...dropDownQueries
+  ]
 
   const dataQueries = useQueries(
     queries.map(d => {
       const queryParams = d.params || [];
       return {
         queryKey: [d.key, ...queryParams],
-        queryFn: () => axios.get(d.url)
+        queryFn: () => {
+          const params = queryParams.reduce(
+            (acc, d) => {
+              acc[d.key] = Array.isArray(d.val) ? d.val[0] : d.val
+              return acc;
+            }
+            , {})
+
+          console.log(params, 'params')
+          return axios.get(d.url, {
+            params: params
+          })
+        },
+        staleTime: 600000
       }
     })
   )
 
-  window.setQueries = setQueries;
+  window.queries = queries;
 
   console.log(dataQueries);
 
@@ -100,6 +200,14 @@ function MainApp() {
   const districtTableQuery = dataQueries[3];
 
   const assessmentTableQuery = dataQueries[4];
+
+  const dspSelectQuery = dataQueries[5];
+
+  const provincesSelectQuery = dataQueries[6];
+
+  const districtsSelectQuery = dataQueries[7];
+
+  const subDistrictsSelectQuery = dataQueries[8];
 
   return (
     <div className="flex flex-col gap-6 w-full">
@@ -121,11 +229,14 @@ function MainApp() {
                   key={2}
                   setShowTooltip={setShowTooltip}
                   setTooltipData={setTooltipData}
-                  loadingData={radialChartQuery.isLoading}
+                  loadingData={radialChartQuery.isFetching}
                   data={radialChartQuery.data?.data}
+                  filtersChanged={filtersChanged}
+                  status={radialChartQuery.status}
+                  dataUpdatedAt={radialChartQuery.dataUpdatedAt}
                 />
                 <GaugeChart
-                  loadingData={gaugeChartQuery.isLoading}
+                  loadingData={gaugeChartQuery.isFetching}
                   data={gaugeChartQuery.data?.data}
                 />
               </div>
@@ -137,7 +248,7 @@ function MainApp() {
                 <CardContent>
                   <AssessmentDataTable
                     data={assessmentTableQuery.data?.data?.data}
-                    loadedTable={!assessmentTableQuery.isLoading}
+                    loadedTable={!assessmentTableQuery.isFetching}
                   />
                 </CardContent>
               </Card>
@@ -148,8 +259,11 @@ function MainApp() {
                 key={1}
                 setShowTooltip={setShowTooltip}
                 setTooltipData={setTooltipData}
-                loadingData={comboBoxQuery.isLoading}
+                loadingData={comboBoxQuery.isFetching}
                 data={comboBoxQuery.data?.data}
+                filtersChanged={filtersChanged}
+                status={comboBoxQuery.status}
+                dataUpdatedAt={comboBoxQuery.dataUpdatedAt}
               />
             </div>
             <Card className="">
@@ -160,7 +274,7 @@ function MainApp() {
               <CardContent>
                 <DistrictDataTable
                   data={districtTableQuery.data?.data?.data}
-                  loadedTable={!districtTableQuery.isLoading}
+                  loadedTable={!districtTableQuery.isFetching}
                 />
               </CardContent>
             </Card>
@@ -178,23 +292,27 @@ function MainApp() {
             <CardContent>
               <div className='flex flex-col gap-4'>
                 <MultiSelect
-                  options={dsp.data.map(d => ({value : d.Name, label : d.Name}))}
+                  options={dspSelectQuery.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))}
                   label="Organisation"
+                  setVal={(val) => updateFilters('dsp', val)}
                 />
                 <MultiSelect
-                  options={provinces.data.map(d => ({value : d.Name, label : d.Name}))}
+                  options={provincesSelectQuery.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))}
                   label="Province"
+                  setVal={(val) => updateFilters('province', val)}
                 />
                 <MultiSelect
-                  options={districts.data.map(d => ({value : d.Name, label : d.Name}))}
+                  options={districtsSelectQuery.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))}
                   label="District"
+                  setVal={(val) => updateFilters('district', val)}
                 />
                 <MultiSelect
-                  options={subdistricts.data.map(d => ({value : d.Name, label : d.Name}))}
+                  options={subDistrictsSelectQuery.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))}
                   label="Sub-District"
+                  setVal={(val) => updateFilters('subDistrict', val)}
                 />
                 <MultiSelect
-                  options={[1,2,3]}
+                  options={[1, 2, 3]}
                   label="Assesment Occurrence"
                 />
                 <div className="flex flex-col gap-2">
@@ -212,7 +330,7 @@ function MainApp() {
   )
 }
 
-function MultiSelect({ options, label }) {
+function MultiSelect({ options, label, setVal }) {
 
   return (
     <div className="flex flex-col gap-2">
@@ -227,7 +345,13 @@ function MultiSelect({ options, label }) {
           textAlign: 'left'
         }),
       }}
-        options={options} isMulti />
+        options={options}
+        isMulti
+        onChange={(val) => {
+          console.log(val, 'selVal');
+          setVal(val.map(d => d.value));
+        }}
+      />
     </div>
   );
 }

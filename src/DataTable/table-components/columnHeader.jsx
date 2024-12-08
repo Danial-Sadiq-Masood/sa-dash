@@ -21,13 +21,13 @@ import {
     }
   
     return (
-      <div className={cn("flex items-center space-x-2 my-2", className)}>
+      <div className={cn("flex items-center space-x-2 p-1", className)}>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
               variant="ghost"
               size="sm"
-              className="-ml-3 h-10 data-[state=open]:bg-accent bg-[rgba(0,0,0,0)] text-wrap text-left"
+              className="h-10 hover:bg-transparent data-[state=open]:bg-transparent bg-[rgba(0,0,0,0)] text-wrap text-left"
             >
               <p>{title}</p>
               {column.getIsSorted() === "desc" ? (
