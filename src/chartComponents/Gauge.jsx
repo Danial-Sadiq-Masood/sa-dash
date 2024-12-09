@@ -43,6 +43,8 @@ export default function Gauge({loadingData, data}) {
 
     const assessments = data?.data ? data.data.Assessed : 0;
 
+    const total = data?.data ? data.data.TotalFacilities : 0;
+
     return (
         <Card>
             <CardHeader className="bg-[#f7fbff]">
@@ -98,14 +100,28 @@ export default function Gauge({loadingData, data}) {
                                             >
                                                 <tspan
                                                     x={viewBox.cx}
-                                                    y={viewBox.cy}
-                                                    className="fill-foreground text-4xl font-bold"
+                                                    y={viewBox.cy - 30}
+                                                    className="fill-foreground text-2xl font-bold"
                                                 >
                                                     {assessments.toLocaleString()}
                                                 </tspan>
                                                 <tspan
                                                     x={viewBox.cx}
-                                                    y={(viewBox.cy || 0) + 24}
+                                                    y={viewBox.cy - 6}
+                                                    className="fill-muted-foreground"
+                                                >
+                                                    /
+                                                </tspan>
+                                                <tspan
+                                                    x={viewBox.cx}
+                                                    y={viewBox.cy + 18}
+                                                    className="fill-foreground text-2xl font-bold"
+                                                >
+                                                    {total.toLocaleString()}
+                                                </tspan>
+                                                <tspan
+                                                    x={viewBox.cx}
+                                                    y={(viewBox.cy || 0) + 42}
                                                     className="fill-muted-foreground"
                                                 >
                                                     Assesments

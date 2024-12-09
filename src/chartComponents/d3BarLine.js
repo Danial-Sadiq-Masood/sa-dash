@@ -194,7 +194,7 @@ function buildChart(
 ) {
     const margin = ({ top: 20, right: 100, bottom: 30, left: 100 })
     const height = 500
-    const width = 856
+    const width = 1100
 
     const y2Axis = g => g
         .attr("transform", `translate(${width - margin.right},0)`)
@@ -222,7 +222,7 @@ function buildChart(
     const x = d3.scaleBand()
         .domain(chartData.map((d, i) => d.ProvinceName))
         .rangeRound([margin.left, width - margin.right])
-        .padding(0.1)
+        .padding(0.2)
 
     const xAxis = g => g
         .attr("transform", `translate(0,${height - margin.bottom})`)
@@ -242,7 +242,8 @@ function buildChart(
         .y(d => y2(d.PercentageComplete))
 
     const svg = d3.create("svg")
-        .attr("viewBox", [0, 0, width, height]);
+        .attr("viewBox", [0, 0, width, height])
+        .attr("class", "max-h-[500px]");
 
     svg.append("g")
         .attr('id', 'bars')

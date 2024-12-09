@@ -75,7 +75,7 @@ export default function ChartHolder({
                         </div>
                     </div>
                 }
-                <div className="w-[856px] font-sans" ref={ref}>
+                <div className="w-[100%] flex justify-center font-sans" ref={ref}>
                 </div>
             </CardContent>
         </Card>

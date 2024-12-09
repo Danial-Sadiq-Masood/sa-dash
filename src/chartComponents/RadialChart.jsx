@@ -83,7 +83,7 @@ export default function RadialChartHolder({
                         </div>
                     </div>
                 }
-                <div className="font-sans" ref={ref}>
+                <div className="font-sans flex justify-center" ref={ref}>
                 </div>
             </CardContent>
         </Card>

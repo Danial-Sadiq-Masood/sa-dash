@@ -215,7 +215,44 @@ function MainApp() {
         <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
       </div>
       <div className='grid grid-cols-4 auto-rows-auto	gap-6'>
-        <Tabs defaultValue="overview" className="space-y-4 text-left col-start-1 col-span-3">
+      <div className="col-start-1 col-span-4 h-fit flex flex-col gap-4 top-3 z-50">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-m font-medium">
+                Filters
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-5 auto-rows-auto gap-2">
+                <MultiSelect
+                  options={dspSelectQuery.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))}
+                  label="Organisation"
+                  setVal={(val) => updateFilters('dsp', val)}
+                />
+                <MultiSelect
+                  options={provincesSelectQuery.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))}
+                  label="Province"
+                  setVal={(val) => updateFilters('province', val)}
+                />
+                <MultiSelect
+                  options={districtsSelectQuery.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))}
+                  label="District"
+                  setVal={(val) => updateFilters('district', val)}
+                />
+                <MultiSelect
+                  options={subDistrictsSelectQuery.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))}
+                  label="Sub-District"
+                  setVal={(val) => updateFilters('subDistrict', val)}
+                />
+                <MultiSelect
+                  options={[1, 2, 3]}
+                  label="Assesment Occurrence"
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+        <Tabs defaultValue="overview" className="space-y-4 text-left col-start-1 col-span-4">
           <TabsList>
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="table">
@@ -282,49 +319,6 @@ function MainApp() {
           <TabsContent value="table">
           </TabsContent>
         </Tabs>
-        <div className="col-start-4 col-span-1 h-fit flex flex-col gap-4 sticky top-8">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-m font-medium">
-                Filters
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className='flex flex-col gap-4'>
-                <MultiSelect
-                  options={dspSelectQuery.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))}
-                  label="Organisation"
-                  setVal={(val) => updateFilters('dsp', val)}
-                />
-                <MultiSelect
-                  options={provincesSelectQuery.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))}
-                  label="Province"
-                  setVal={(val) => updateFilters('province', val)}
-                />
-                <MultiSelect
-                  options={districtsSelectQuery.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))}
-                  label="District"
-                  setVal={(val) => updateFilters('district', val)}
-                />
-                <MultiSelect
-                  options={subDistrictsSelectQuery.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))}
-                  label="Sub-District"
-                  setVal={(val) => updateFilters('subDistrict', val)}
-                />
-                <MultiSelect
-                  options={[1, 2, 3]}
-                  label="Assesment Occurrence"
-                />
-                <div className="flex flex-col gap-2">
-                  <Button>
-                    <Filter />
-                    Apply Filter
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
       </div>
     </div>
   )
