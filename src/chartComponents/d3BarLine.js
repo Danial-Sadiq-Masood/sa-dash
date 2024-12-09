@@ -247,7 +247,7 @@ function buildChart(
 
     svg.append("g")
         .attr('id', 'bars')
-        .attr("fill", "#606c38")
+        .attr("fill", "#006105")
         .attr("fill-opacity", 0.8)
         .selectAll("rect")
         .data(chartData)

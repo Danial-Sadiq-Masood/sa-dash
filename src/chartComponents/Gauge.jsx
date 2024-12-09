@@ -86,7 +86,7 @@ export default function Gauge({loadingData, data}) {
                             className="first:fill-muted last:fill-background"
                             polarRadius={[86, 74]}
                         />
-                        <RadialBar isAnimationActive={false} dataKey="visitors" background cornerRadius={10} />
+                        <RadialBar isAnimationActive={false} dataKey="visitors" background fill="#006105" cornerRadius={10} />
                         <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
                             <Label
                                 content={({ viewBox }) => {
@@ -116,6 +116,7 @@ export default function Gauge({loadingData, data}) {
                                                     x={viewBox.cx}
                                                     y={viewBox.cy + 18}
                                                     className="fill-foreground text-2xl font-bold"
+                                                    color="red"
                                                 >
                                                     {total.toLocaleString()}
                                                 </tspan>

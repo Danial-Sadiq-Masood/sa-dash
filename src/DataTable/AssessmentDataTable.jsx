@@ -68,7 +68,7 @@ export default function DataTableDemo({ data = [], loadedTable }) {
                     header: ({ column }) => <ColumnHeader column={column} title="District" />,
                     id: "District",
                     cell: ({ row }) => (
-                        <div className="capitalize">{row.getValue("District")}</div>
+                        <div className="">{row.getValue("District")}</div>
                     ),
                     size: 200,
                     enableSorting: true

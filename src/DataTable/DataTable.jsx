@@ -68,7 +68,7 @@ export default function DataTableDemo({ data = [], loadedTable }) {
                     header: ({ column }) => <ColumnHeader column={column} title="District" />,
                     id: "District",
                     cell: ({ row }) => (
-                        <div className="capitalize">{row.getValue("District")}</div>
+                        <div className="">{row.getValue("District")}</div>
                     ),
                     size: 200,
                     enableSorting: true
@@ -93,7 +93,7 @@ export default function DataTableDemo({ data = [], loadedTable }) {
                 {
                     accessorKey: "Level2",
                     id: "Level 2",
-                    header: ({ column }) => <ColumnHeader className="bg-[#FFC000] text-black" column={column} title="Level 2" />,
+                    header: ({ column }) => <ColumnHeader className="bg-[#FFFF00] text-black" column={column} title="Level 2" />,
                     cell: ({ row }) => <div className="capitalize">{row.getValue("Level 2")}</div>,
                     size: 100,
                     enableSorting: true
@@ -101,7 +101,7 @@ export default function DataTableDemo({ data = [], loadedTable }) {
                 {
                     accessorKey: "Level3",
                     id: "Level 3",
-                    header: ({ column }) => <ColumnHeader className="bg-[#FFFF00] text-black" column={column} title="Level 3" />,
+                    header: ({ column }) => <ColumnHeader className="bg-[#92D050] text-black" column={column} title="Level 3" />,
                     cell: ({ row }) => <div className="capitalize">{row.getValue("Level 3")}</div>,
                     size: 100,
                     enableSorting: true
@@ -109,7 +109,7 @@ export default function DataTableDemo({ data = [], loadedTable }) {
                 {
                     accessorKey: "Level4",
                     id: "Level 4",
-                    header: ({ column }) => <ColumnHeader className="bg-[#92D050] text-black" column={column} title="Level 4" />,
+                    header: ({ column }) => <ColumnHeader className="bg-[#00B050] text-black" column={column} title="Level 4" />,
                     cell: ({ row }) => <div className="capitalize">{row.getValue("Level 4")}</div>,
                     size: 100,
                     enableSorting: true
