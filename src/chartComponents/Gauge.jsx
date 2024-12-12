@@ -23,7 +23,7 @@ import { ChartContainer } from "@/components/ui/chart"
 import { Spinner } from "@/components/ui/spinner.jsx"
 
 const chartData = [
-    { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
+    { browser: "safari", visitors: 200, fill: "#338137" },
 ]
 
 const chartConfig = {
@@ -51,7 +51,7 @@ export default function Gauge({loadingData, data}) {
                 <CardTitle className="text-left text-lg">Public Health Facilities</CardTitle>
                 <CardDescription className="text-left">Assessment Progress</CardDescription>
             </CardHeader>
-            <CardContent className="flex-1 pt-4 pb-2 relative">
+            <CardContent className="flex-1 p-0 relative">
             {
                     loadingData
                     &&
@@ -115,8 +115,7 @@ export default function Gauge({loadingData, data}) {
                                                 <tspan
                                                     x={viewBox.cx}
                                                     y={viewBox.cy + 18}
-                                                    className="fill-foreground text-2xl font-bold"
-                                                    color="red"
+                                                    className="text-2xl font-bold fill-red-600"
                                                 >
                                                     {total.toLocaleString()}
                                                 </tspan>

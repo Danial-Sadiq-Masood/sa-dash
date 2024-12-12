@@ -18,6 +18,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
+
 import { useQueries, QueryClient, QueryClientProvider } from 'react-query'
 import axios from 'axios'
 
@@ -40,6 +41,12 @@ function App() {
   )
 }
 
+const childLists = {
+  'dsp': 'province',
+  'province': 'districts',
+  'districts': 'subdistricts'
+}
+
 function MainApp() {
 
   const [showTooltip, setShowTooltip] = useState(false);
@@ -48,8 +55,11 @@ function MainApp() {
   const [filters, setFilters] = useState({
     dsp: [],
     province: [],
-    district: [],
-    subDistrict: [],
+    districts: [],
+    subdistrict: [],
+    copYear : [],
+    agencies : [],
+    partners : []
   });
 
   const previousFilters = useRef(filters);
@@ -107,11 +117,11 @@ function MainApp() {
       },
       {
         key: 'districts',
-        val: filters.district
+        val: filters.districts
       },
       {
         key: 'subdistricts',
-        val: filters.subDistrict
+        val: filters.subdistrict
       },
     ]
   })
@@ -156,8 +166,67 @@ function MainApp() {
         }
       ],
       key: 'populateSelectQ'
+    },
+    {
+      url: 'https://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/GetCopYears',
+      params: [
+      ],
+      key: 'populateSelectQ'
+    },
+    {
+      url: 'https://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/GetFilterCop21',
+      params: [
+        {
+          key: 'viewName',
+          val: 'agencies'
+        }
+      ],
+      key: 'populateSelectQ'
+    },
+    {
+      url: 'https://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/GetFilterCop21',
+      params: [
+        {
+          key: 'viewName',
+          val: 'partners'
+        }
+      ],
+      key: 'populateSelectQ'
     }
   ];
+
+  Object.entries(filters)
+    .filter(d => d[0] == 'copYear')
+    .forEach(
+      ([key, arr]) => {
+
+        if (!childLists[key] || arr.length == 0) {
+          return;
+        }
+        const apiCall = {
+          url: 'https://clisupport.co.za/Chart_aND8ZzKsyrprAQy84oi8z3/GetSubChoices',
+          params: [
+            {
+              key: 'parentList',
+              val: key
+            },
+            {
+              key: 'parentValue',
+              val: arr[0]
+            },
+            {
+              key: 'childList',
+              val: childLists[key]
+            }
+          ],
+          key: 'populateSelectQ'
+        }
+        console.log('dsp call', apiCall)
+        dropDownQueries.push(apiCall)
+      }
+    )
+
+  console.log('drop down queries', dropDownQueries);
 
   const queries = [
     ...filterQueries,
@@ -175,7 +244,7 @@ function MainApp() {
               acc[d.key] = Array.isArray(d.val) ? d.val[0] : d.val
               return acc;
             }
-            , {})
+            , { username: 'dsouchon@gmail.com' })
 
           console.log(params, 'params')
           return axios.get(d.url, {
@@ -188,8 +257,6 @@ function MainApp() {
   )
 
   window.queries = queries;
-
-  console.log(dataQueries);
 
   const comboBoxQuery = dataQueries[0];
 
@@ -207,7 +274,31 @@ function MainApp() {
 
   const districtsSelectQuery = dataQueries[7];
 
-  const subDistrictsSelectQuery = dataQueries[8];
+  const subdistrictsSelectQuery = dataQueries[8];
+
+  const copYearSelectChoiceQuery = dataQueries[9];
+
+  const agencySelectQuery = dataQueries[10];
+
+  const partnerSelectQuery = dataQueries[11];
+
+  const provincesSubChoiceQuery = dataQueries[12];
+
+  const districtsSubChoiceQuery = dataQueries[13];
+
+  const subdistrictsSubChoiceQuery = dataQueries[14];
+
+  const provinceOptions = getSelectOptions(filters.dsp.length, provincesSelectQuery, provincesSubChoiceQuery);
+
+  const districtOptions = getSelectOptions(filters.province.length, districtsSelectQuery, districtsSubChoiceQuery);
+
+  const subdistrictsOptions = getSelectOptions(filters.districts.length, subdistrictsSelectQuery, subdistrictsSubChoiceQuery);
+
+  const copYearOptions = getCopYearOptions(filters.copYear.length, copYearSelectChoiceQuery, null);
+
+  const agencyOptions = getCopSelect21Options(filters.agencies.length, agencySelectQuery, null);
+
+  const partnerOptions = getCopSelect21Options(filters.partners.length, partnerSelectQuery, null);
 
   return (
     <div className="flex flex-col gap-6 w-full">
@@ -215,7 +306,7 @@ function MainApp() {
         <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
       </div>
       <div className='grid grid-cols-4 auto-rows-auto	gap-6'>
-      <div className="col-start-1 col-span-4 h-fit flex flex-col gap-4 top-3 z-50">
+        <div className="col-start-1 col-span-4 h-fit flex flex-col gap-4 top-3 z-50">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-m font-medium">
@@ -223,30 +314,44 @@ function MainApp() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-5 auto-rows-auto gap-2">
+              <div className="grid grid-cols-4 auto-rows-auto gap-2">
                 <MultiSelect
                   options={dspSelectQuery.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))}
                   label="Organisation"
                   setVal={(val) => updateFilters('dsp', val)}
                 />
                 <MultiSelect
-                  options={provincesSelectQuery.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))}
+                  disable={filters.dsp.length == 0}
+                  options={provinceOptions}
                   label="Province"
                   setVal={(val) => updateFilters('province', val)}
                 />
                 <MultiSelect
-                  options={districtsSelectQuery.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))}
+                  disable={filters.province.length == 0}
+                  options={districtOptions}
                   label="District"
-                  setVal={(val) => updateFilters('district', val)}
+                  setVal={(val) => updateFilters('districts', val)}
                 />
                 <MultiSelect
-                  options={subDistrictsSelectQuery.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))}
+                  disable={filters.districts.length == 0}
+                  options={subdistrictsOptions}
                   label="Sub-District"
-                  setVal={(val) => updateFilters('subDistrict', val)}
+                  setVal={(val) => updateFilters('subdistrict', val)}
                 />
                 <MultiSelect
-                  options={[1, 2, 3]}
-                  label="Assesment Occurrence"
+                  options={copYearOptions}
+                  label="COP Year"
+                  setVal={(val) => updateFilters('copYear', val)}
+                />
+                <MultiSelect
+                  options={agencyOptions}
+                  label="Agency"
+                  setVal={(val) => updateFilters('agencies', val)}
+                />
+                <MultiSelect
+                  options={partnerOptions}
+                  label="Partner"
+                  setVal={(val) => updateFilters('partners', val)}
                 />
               </div>
             </CardContent>
@@ -260,7 +365,7 @@ function MainApp() {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="overview" className="space-y-4">
-            <div className="grid grid-cols-3 auto-rows-auto gap-4 items-start">
+            <div className="grid grid-cols-4 auto-rows-auto gap-4 items-start">
               <div className='col-start-1 col-span-1 flex flex-col gap-4'>
                 <RadialChart
                   key={2}
@@ -277,32 +382,32 @@ function MainApp() {
                   data={gaugeChartQuery.data?.data}
                 />
               </div>
-              <Card className="col-start-2 col-span-2">
-                <CardHeader className="bg-[#f7fbff]">
-                  <CardTitle className="text-left text-lg">Public Health Facilities</CardTitle>
-                  <CardDescription className="text-left">SPI-RT Assessments</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <AssessmentDataTable
-                    data={assessmentTableQuery.data?.data?.data}
-                    loadedTable={!assessmentTableQuery.isFetching}
-                  />
-                </CardContent>
-              </Card>
+              <div className="col-start-2 col-span-3">
+                <Tooltip showTooltip={showTooltip} toolTipData={toolTipData} />
+                <BarLineChart
+                  key={1}
+                  setShowTooltip={setShowTooltip}
+                  setTooltipData={setTooltipData}
+                  loadingData={comboBoxQuery.isFetching}
+                  data={comboBoxQuery.data?.data}
+                  filtersChanged={filtersChanged}
+                  status={comboBoxQuery.status}
+                  dataUpdatedAt={comboBoxQuery.dataUpdatedAt}
+                />
+              </div>
             </div>
-            <div>
-              <Tooltip showTooltip={showTooltip} toolTipData={toolTipData} />
-              <BarLineChart
-                key={1}
-                setShowTooltip={setShowTooltip}
-                setTooltipData={setTooltipData}
-                loadingData={comboBoxQuery.isFetching}
-                data={comboBoxQuery.data?.data}
-                filtersChanged={filtersChanged}
-                status={comboBoxQuery.status}
-                dataUpdatedAt={comboBoxQuery.dataUpdatedAt}
-              />
-            </div>
+            <Card>
+              <CardHeader className="bg-[#f7fbff]">
+                <CardTitle className="text-left text-lg">Public Health Facilities</CardTitle>
+                <CardDescription className="text-left">SPI-RT Assessments</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <AssessmentDataTable
+                  data={assessmentTableQuery.data?.data?.data}
+                  loadedTable={!assessmentTableQuery.isFetching}
+                />
+              </CardContent>
+            </Card>
             <Card className="">
               <CardHeader className="bg-[#f7fbff]">
                 <CardTitle className="text-left text-lg">Public Health Facilities</CardTitle>
@@ -324,7 +429,7 @@ function MainApp() {
   )
 }
 
-function MultiSelect({ options, label, setVal }) {
+function MultiSelect({ options, label, setVal, disable }) {
 
   return (
     <div className="flex flex-col gap-2">
@@ -341,6 +446,7 @@ function MultiSelect({ options, label, setVal }) {
       }}
         options={options}
         isMulti
+        isDisabled={disable}
         onChange={(val) => {
           console.log(val, 'selVal');
           setVal(val.map(d => d.value));
@@ -352,3 +458,27 @@ function MultiSelect({ options, label, setVal }) {
 
 
 export default App
+
+function getSelectOptions(filtersLength, mainQ, subChoicesQ) {
+  if (filtersLength == 0) {
+    return mainQ.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))
+  } else {
+    return subChoicesQ?.data?.data.map(d => ({ value: d.Value, label: d.Value }))
+  }
+}
+
+function getCopYearOptions(filtersLength, mainQ, subChoicesQ) {
+  if (filtersLength == 0) {
+    return mainQ.data?.data?.data.map(d => ({ value: d.Value, label: d.Text }))
+  } else {
+    return subChoicesQ?.data?.data.map(d => ({ value: d.Value, label: d.Value }))
+  }
+}
+
+function getCopSelect21Options(filtersLength, mainQ, subChoicesQ) {
+  if (filtersLength == 0) {
+    return mainQ.data?.data?.data.map(d => ({ value: d, label: d }))
+  } else {
+    return subChoicesQ?.data?.data.map(d => ({ value: d.Value, label: d.Value }))
+  }
+}

@@ -171,8 +171,8 @@ export default function buildChart(rootNode, points) {
     const longitude = d3.scalePoint(new Set(Plot.valueof(points, "Description")), [180, -180]).padding(0.5).align(1)
 
     const radarPlot =  Plot.plot({
-        margin : 15,
-        width: 250,
+        margin : 18,
+        width: 240,
         projection: {
             type: "azimuthal-equidistant",
             rotate: [0, -90],

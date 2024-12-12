@@ -44,7 +44,9 @@ export default function RadialChartHolder({
         () => {
             
             if (status === 'success') {
-                data.unshift(data.pop()); //fix this later
+                if(data[0] && data[0].Description !== 'Overall Score'){
+                    data.unshift(data.pop()); //fix this later
+                }
                 console.log('radial data->', data)
                 actor.current.send({
                     type: 'DATA_LOADED',

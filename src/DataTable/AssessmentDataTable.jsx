@@ -219,21 +219,12 @@ function DataTable({ table }) {
                             >
                                 {row.getVisibleCells().map((cell) => (
                                     <TableCell className="align-top" key={cell.id}>
-                                        {
-                                            !row.getIsExpanded()
-                                                ?
-                                                (<div className="max-h-[200px] overflow-hidden">
-                                                    {flexRender(
-                                                        cell.column.columnDef.cell,
-                                                        cell.getContext()
-                                                    )}
-                                                </div>)
-                                                :
-                                                flexRender(
-                                                    cell.column.columnDef.cell,
-                                                    cell.getContext()
-                                                )
-                                        }
+                                        <div className="max-h-[200px] px-6 overflow-hidden">
+                                            {flexRender(
+                                                cell.column.columnDef.cell,
+                                                cell.getContext()
+                                            )}
+                                        </div>
                                     </TableCell>
                                 ))}
                             </TableRow>

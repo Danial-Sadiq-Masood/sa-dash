@@ -116,7 +116,7 @@ export default function DataTableDemo({ data = [], loadedTable }) {
                 },
                 {
                     id: "Level 5",
-                    header: ({ column }) => <ColumnHeader className="pl-2" column={column} title="Total" />,
+                    header: ({ column }) => <ColumnHeader className="pl-3" column={column} title="Total" />,
                     cell: ({ row }) => {
 
                         const level0 = row.getValue("Level 0");
@@ -250,21 +250,12 @@ function DataTable({ table }) {
                             >
                                 {row.getVisibleCells().map((cell) => (
                                     <TableCell className="align-top" key={cell.id}>
-                                        {
-                                            !row.getIsExpanded()
-                                                ?
-                                                (<div className="max-h-[200px] overflow-hidden">
-                                                    {flexRender(
-                                                        cell.column.columnDef.cell,
-                                                        cell.getContext()
-                                                    )}
-                                                </div>)
-                                                :
-                                                flexRender(
-                                                    cell.column.columnDef.cell,
-                                                    cell.getContext()
-                                                )
-                                        }
+                                        <div className="max-h-[200px] px-3 overflow-hidden">
+                                            {flexRender(
+                                                cell.column.columnDef.cell,
+                                                cell.getContext()
+                                            )}
+                                        </div>
                                     </TableCell>
                                 ))}
                             </TableRow>

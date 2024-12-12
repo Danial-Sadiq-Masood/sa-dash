@@ -193,8 +193,8 @@ function buildChart(
     chartData
 ) {
     const margin = ({ top: 20, right: 100, bottom: 30, left: 100 })
-    const height = 500
-    const width = 1100
+    const height = 700
+    const width = 1200
 
     const y2Axis = g => g
         .attr("transform", `translate(${width - margin.right},0)`)
