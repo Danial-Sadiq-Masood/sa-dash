@@ -59,7 +59,7 @@ export default function ChartHolder({
                 <CardTitle className="text-left text-lg">Public Health Facilities</CardTitle>
                 <CardDescription className="text-left">SPI-RT Assessments</CardDescription>
             </CardHeader>
-            <CardContent className="relative min-h-[500px] py-10">
+            <CardContent className="relative min-h-[500px] py-10 max-md:min-h-3">
                 {
                     loadingData
                     &&

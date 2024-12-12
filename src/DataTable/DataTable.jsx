@@ -31,18 +31,8 @@ import {
     TableRow,
 } from "@/components/ui/table"
 
-function NewlineText({ text = '' }) {
-    return (
-        <div className="leading-7">
-            {text.split('\n').map((line, index) => (
-                <span key={index}>
-                    {line}
-                    <br />
-                </span>
-            ))}
-        </div>
-    );
-}
+
+import { Spinner } from "@/components/ui/spinner.jsx"
 
 export default function DataTableDemo({ data = [], loadedTable }) {
     console.log(data);
@@ -172,7 +162,7 @@ export default function DataTableDemo({ data = [], loadedTable }) {
         <div className="w-full">
             <div className="flex items-center justify-between py-4">
                 <div className="flex flex-1 items-center space-x-2">
-                    <div className="flex items-center py-4 min-w-[300px]">
+                    <div className="flex items-center py-4 min-w-[300px] max-md:min-w-0">
                         {
                             loadedTable
                             &&
@@ -203,7 +193,8 @@ export default function DataTableDemo({ data = [], loadedTable }) {
                         ?
                         <DataTable table={table} />
                         :
-                        <p className="p-10 text-gray-700">No Data Uploaded</p>
+
+                        <p className="p-10 text-gray-700 flex items-center justify-center gap-3"> <Spinner /> Loading Data</p>
                 }
             </div>
             {loadedTable

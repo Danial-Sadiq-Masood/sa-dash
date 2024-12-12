@@ -56,7 +56,7 @@ function MainApp() {
     dsp: [],
     province: [],
     districts: [],
-    subdistrict: [],
+    subdistricts: [],
     copYear : [],
     agencies : [],
     partners : []
@@ -71,10 +71,33 @@ function MainApp() {
   const filtersChanged = JSON.stringify(previousFilters.current) !== JSON.stringify(filters);
 
   const updateFilters = (key, val) => {
-    setFilters({
-      ...filters,
-      [key]: val
-    });
+
+    if(Array.isArray(val) && val.length == 0){
+      const keysToClear = [];
+
+      let currentKey = key;
+
+      while(currentKey){
+        keysToClear.push(currentKey)
+        currentKey = childLists[currentKey];
+      }
+
+      const clearObj = keysToClear.reduce((acc,d)=>{
+        acc[d] = []
+        return acc;
+      },{})
+
+      setFilters({
+        ...filters,
+        ...clearObj
+      })
+      
+    }else{
+      setFilters({
+        ...filters,
+        [key]: val
+      });
+    }
   };
 
   const filterQueries = [
@@ -121,7 +144,7 @@ function MainApp() {
       },
       {
         key: 'subdistricts',
-        val: filters.subdistrict
+        val: filters.subdistricts
       },
     ]
   })
@@ -196,7 +219,7 @@ function MainApp() {
   ];
 
   Object.entries(filters)
-    .filter(d => d[0] == 'copYear')
+    .filter(d => d[0] !== 'copYear')
     .forEach(
       ([key, arr]) => {
 
@@ -212,7 +235,7 @@ function MainApp() {
             },
             {
               key: 'parentValue',
-              val: arr[0]
+              val: arr.join(',')
             },
             {
               key: 'childList',
@@ -241,7 +264,11 @@ function MainApp() {
         queryFn: () => {
           const params = queryParams.reduce(
             (acc, d) => {
-              acc[d.key] = Array.isArray(d.val) ? d.val[0] : d.val
+              const params = Array.isArray(d.val) ? d.val.join(',') : d.val
+              if(params == ''){
+                return acc;
+              }
+              acc[d.key] = params;
               return acc;
             }
             , { username: 'dsouchon@gmail.com' })
@@ -284,6 +311,8 @@ function MainApp() {
 
   const provincesSubChoiceQuery = dataQueries[12];
 
+  console.log('pscq', provincesSubChoiceQuery)
+
   const districtsSubChoiceQuery = dataQueries[13];
 
   const subdistrictsSubChoiceQuery = dataQueries[14];
@@ -314,44 +343,51 @@ function MainApp() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-4 auto-rows-auto gap-2">
+              <div className="grid grid-cols-4 auto-rows-auto gap-2 max-lg:grid-cols-3 max-md:grid-cols-1">
                 <MultiSelect
                   options={dspSelectQuery.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))}
                   label="Organisation"
                   setVal={(val) => updateFilters('dsp', val)}
+                  value={filters.dsp}
                 />
                 <MultiSelect
                   disable={filters.dsp.length == 0}
                   options={provinceOptions}
                   label="Province"
                   setVal={(val) => updateFilters('province', val)}
+                  value={filters.province}
                 />
                 <MultiSelect
                   disable={filters.province.length == 0}
                   options={districtOptions}
                   label="District"
                   setVal={(val) => updateFilters('districts', val)}
+                  value={filters.districts}
                 />
                 <MultiSelect
                   disable={filters.districts.length == 0}
                   options={subdistrictsOptions}
                   label="Sub-District"
-                  setVal={(val) => updateFilters('subdistrict', val)}
+                  setVal={(val) => updateFilters('subdistricts', val)}
+                  value={filters.subdistricts}
                 />
                 <MultiSelect
                   options={copYearOptions}
                   label="COP Year"
                   setVal={(val) => updateFilters('copYear', val)}
+                  value={filters.copYear}
                 />
                 <MultiSelect
                   options={agencyOptions}
                   label="Agency"
                   setVal={(val) => updateFilters('agencies', val)}
+                  value={filters.agencies}
                 />
                 <MultiSelect
                   options={partnerOptions}
                   label="Partner"
                   setVal={(val) => updateFilters('partners', val)}
+                  value={filters.partners}
                 />
               </div>
             </CardContent>
@@ -365,8 +401,8 @@ function MainApp() {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="overview" className="space-y-4">
-            <div className="grid grid-cols-4 auto-rows-auto gap-4 items-start">
-              <div className='col-start-1 col-span-1 flex flex-col gap-4'>
+            <div className="grid grid-cols-4 auto-rows-auto gap-4 items-start max-lg:grid-cols-2">
+              <div className='col-start-1 col-span-1 flex flex-col gap-4 max-lg:col-span-2 max-lg:grid max-lg:grid-cols-2 max-md:grid-cols-1'>
                 <RadialChart
                   key={2}
                   setShowTooltip={setShowTooltip}
@@ -382,7 +418,7 @@ function MainApp() {
                   data={gaugeChartQuery.data?.data}
                 />
               </div>
-              <div className="col-start-2 col-span-3">
+              <div className="col-start-2 col-span-3 max-lg:col-start-1 max-lg:col-span-2">
                 <Tooltip showTooltip={showTooltip} toolTipData={toolTipData} />
                 <BarLineChart
                   key={1}
@@ -429,7 +465,7 @@ function MainApp() {
   )
 }
 
-function MultiSelect({ options, label, setVal, disable }) {
+function MultiSelect({ options, label, setVal, disable, value}) {
 
   return (
     <div className="flex flex-col gap-2">
@@ -444,6 +480,7 @@ function MultiSelect({ options, label, setVal, disable }) {
           textAlign: 'left'
         }),
       }}
+        value={value.map(d => ({value : d, label : d}))}
         options={options}
         isMulti
         isDisabled={disable}
@@ -463,13 +500,13 @@ function getSelectOptions(filtersLength, mainQ, subChoicesQ) {
   if (filtersLength == 0) {
     return mainQ.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))
   } else {
-    return subChoicesQ?.data?.data.map(d => ({ value: d.Value, label: d.Value }))
+    return subChoicesQ?.data?.data?.data.map(d => ({ value: d.Value, label: d.Value }))
   }
 }
 
 function getCopYearOptions(filtersLength, mainQ, subChoicesQ) {
   if (filtersLength == 0) {
-    return mainQ.data?.data?.data.map(d => ({ value: d.Value, label: d.Text }))
+    return mainQ.data?.data?.data.map(d => ({ value: d.Text, label: d.Text }))
   } else {
     return subChoicesQ?.data?.data.map(d => ({ value: d.Value, label: d.Value }))
   }

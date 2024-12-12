@@ -17,7 +17,7 @@ import {
   export default function DataTablePagination({ table }) {
     return (
       <div className="flex items-center justify-between px-2">
-        <div className="flex items-center space-x-6 lg:space-x-8">
+        <div className="flex items-center max-md:flex-col max-md:items-end max-md:gap-3">
           <div className="flex items-center space-x-2">
             <p className="text-sm font-medium">Rows per page</p>
             <Select
@@ -38,7 +38,7 @@ import {
               </SelectContent>
             </Select>
           </div>
-          <div className="flex w-[100px] items-center justify-center text-sm font-medium">
+          <div className="flex items-center justify-center text-sm font-medium px-3 max-md:px-0">
             Page {table.getState().pagination.pageIndex + 1} of{" "}
             {table.getPageCount()}
           </div>
