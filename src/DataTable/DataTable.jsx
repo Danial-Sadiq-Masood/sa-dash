@@ -35,7 +35,6 @@ import {
 import { Spinner } from "@/components/ui/spinner.jsx"
 
 export default function DataTableDemo({ data = [], loadedTable }) {
-    console.log(data);
     const [sorting, setSorting] = React.useState([])
     const [columnFilters, setColumnFilters] = React.useState(
         []

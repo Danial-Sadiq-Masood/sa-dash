@@ -147,7 +147,6 @@ function createRadialChartMachine({
                         }
                     },
                     exit: () => {
-                        console.log('exiting loading filtered data')
                     }
                 }
             },
@@ -163,8 +162,6 @@ export { createRadialChartMachine };
 export default function buildChart(rootNode, points) {
 
     rootNode.current.replaceChildren();
-
-    console.log(points, 'radar plot points');
 
     points = points.map(d => ({...d,MetricValue : d.MetricValue / 100}))
 

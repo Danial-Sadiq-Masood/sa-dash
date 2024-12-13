@@ -23,9 +23,6 @@ function createBarChartMachine({
 
         actions: {
             create_chart: ({ context, self, event }) => {
-                //console.log(context);
-                //console.log(self);
-                console.log(event);
                 buildChart(
                     setShowTooltip,
                     setTooltipData,
@@ -141,8 +138,6 @@ function createBarChartMachine({
                             states: {
                                 filtered: {
                                     entry : ({context, self, event})=>{
-                                        console.log('Entering filtered state line')
-                                        console.log(context.filteredData, 'fd line')
                                         rootNode.current.replaceChildren();
 
                                         buildChart(
@@ -182,8 +177,6 @@ function createBarChartMachine({
 }
 
 export { createBarChartMachine };
-
-//console.log(feedbackMachine)
 
 function buildChart(
     setShowTooltip, 
@@ -338,7 +331,6 @@ function buildChart(
 
     rootNode.current.appendChild(svg.node());
 
-    console.log('building chart');
 }
 
 export default buildChart;

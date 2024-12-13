@@ -33,10 +33,10 @@ import AssessmentDataTable from './DataTable/AssessmentDataTable';
 
 const queryClient = new QueryClient()
 
-function App() {
+function App({username}) {
   return (
     <QueryClientProvider client={queryClient}>
-      <MainApp />
+      <MainApp username={username}/>
     </QueryClientProvider>
   )
 }
@@ -47,7 +47,7 @@ const childLists = {
   'districts': 'subdistricts'
 }
 
-function MainApp() {
+function MainApp({username}) {
 
   const [showTooltip, setShowTooltip] = useState(false);
   const [toolTipData, setTooltipData] = useState({ data: { rows: [] } });
@@ -249,7 +249,6 @@ function MainApp() {
           ],
           key: 'populateSelectQ'
         }
-        console.log('dsp call', apiCall)
         dropDownQueries.push(apiCall)
       }
     )
@@ -274,9 +273,8 @@ function MainApp() {
               acc[d.key] = params;
               return acc;
             }
-            , { username: 'dsouchon@gmail.com' })
+            , { username: username })
 
-          console.log(params, 'params')
           return axios.get(d.url, {
             params: params
           })
@@ -481,7 +479,6 @@ function MultiSelect({ options, label, setVal, disable, value, storeObject=false
         isMulti
         isDisabled={disable}
         onChange={(val) => {
-          console.log(val, 'selVal');
           let valuesArr;
           if(storeObject){
             valuesArr = val;
@@ -499,25 +496,37 @@ function MultiSelect({ options, label, setVal, disable, value, storeObject=false
 export default App
 
 function getSelectOptions(filtersLength, mainQ, subChoicesQ) {
-  if (filtersLength == 0) {
-    return mainQ.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))
-  } else {
-    return subChoicesQ?.data?.data?.data.map(d => ({ value: d.Value, label: d.Value }))
+  try{
+    if (filtersLength == 0) {
+      return mainQ.data?.data?.data.map(d => ({ value: d.Name, label: d.Name }))
+    } else {
+      return subChoicesQ?.data?.data?.data.map(d => ({ value: d.Value, label: d.Value }))
+    }
+  }catch{
+    return [];
   }
 }
 
 function getCopYearOptions(filtersLength, mainQ, subChoicesQ) {
-  if (filtersLength == 0) {
-    return mainQ.data?.data?.data.map(d => ({ value: d.Value, label: d.Text }))
-  } else {
-    return subChoicesQ?.data?.data.map(d => ({ value: d.Value, label: d.Value }))
+  try{
+    if (filtersLength == 0) {
+      return mainQ.data?.data?.data.map(d => ({ value: d.Value, label: d.Text }))
+    } else {
+      return subChoicesQ?.data?.data.map(d => ({ value: d.Value, label: d.Value }))
+    }
+  }catch{
+    return [];
   }
 }
 
 function getCopSelect21Options(filtersLength, mainQ, subChoicesQ) {
-  if (filtersLength == 0) {
-    return mainQ.data?.data?.data.map(d => ({ value: d, label: d }))
-  } else {
-    return subChoicesQ?.data?.data.map(d => ({ value: d.Value, label: d.Value }))
+  try{
+    if (filtersLength == 0) {
+      return mainQ.data?.data?.data.map(d => ({ value: d, label: d }))
+    } else {
+      return subChoicesQ?.data?.data.map(d => ({ value: d.Value, label: d.Value }))
+    }
+  }catch{
+    return [];
   }
 }

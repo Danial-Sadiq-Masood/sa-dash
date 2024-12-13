@@ -21,7 +21,6 @@ export default function RadialChartHolder({
     dataUpdatedAt
 }) {
 
-    console.log(status, 'status')
     const loadingData = status === 'loading'
     const ref = useRef();
 
@@ -47,7 +46,6 @@ export default function RadialChartHolder({
                 if (data[0] && data[0].Description !== 'Overall Score') {
                     data.unshift(data.pop()); //fix this later
                 }
-                console.log('radial data->', data)
                 actor.current.send({
                     type: 'DATA_LOADED',
                     data: data
