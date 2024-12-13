@@ -57,9 +57,9 @@ function MainApp() {
     province: [],
     districts: [],
     subdistricts: [],
-    copYear : [],
-    agencies : [],
-    partners : []
+    copyearid: [],
+    agencies: [],
+    partners: []
   });
 
   const previousFilters = useRef(filters);
@@ -72,27 +72,27 @@ function MainApp() {
 
   const updateFilters = (key, val) => {
 
-    if(Array.isArray(val) && val.length == 0){
+    if (Array.isArray(val) && val.length == 0) {
       const keysToClear = [];
 
       let currentKey = key;
 
-      while(currentKey){
+      while (currentKey) {
         keysToClear.push(currentKey)
         currentKey = childLists[currentKey];
       }
 
-      const clearObj = keysToClear.reduce((acc,d)=>{
+      const clearObj = keysToClear.reduce((acc, d) => {
         acc[d] = []
         return acc;
-      },{})
+      }, {})
 
       setFilters({
         ...filters,
         ...clearObj
       })
-      
-    }else{
+
+    } else {
       setFilters({
         ...filters,
         [key]: val
@@ -145,6 +145,10 @@ function MainApp() {
       {
         key: 'subdistricts',
         val: filters.subdistricts
+      },
+      {
+        key: 'copyearid',
+        val: filters.copyearid.map(d => d.value)
       },
     ]
   })
@@ -218,8 +222,9 @@ function MainApp() {
     }
   ];
 
+  //dynamic get subchoices calls
   Object.entries(filters)
-    .filter(d => d[0] !== 'copYear')
+    .filter(d => d[0] !== 'copyearid')
     .forEach(
       ([key, arr]) => {
 
@@ -249,8 +254,6 @@ function MainApp() {
       }
     )
 
-  console.log('drop down queries', dropDownQueries);
-
   const queries = [
     ...filterQueries,
     ...dropDownQueries
@@ -265,7 +268,7 @@ function MainApp() {
           const params = queryParams.reduce(
             (acc, d) => {
               const params = Array.isArray(d.val) ? d.val.join(',') : d.val
-              if(params == ''){
+              if (params == '') {
                 return acc;
               }
               acc[d.key] = params;
@@ -311,8 +314,6 @@ function MainApp() {
 
   const provincesSubChoiceQuery = dataQueries[12];
 
-  console.log('pscq', provincesSubChoiceQuery)
-
   const districtsSubChoiceQuery = dataQueries[13];
 
   const subdistrictsSubChoiceQuery = dataQueries[14];
@@ -323,7 +324,7 @@ function MainApp() {
 
   const subdistrictsOptions = getSelectOptions(filters.districts.length, subdistrictsSelectQuery, subdistrictsSubChoiceQuery);
 
-  const copYearOptions = getCopYearOptions(filters.copYear.length, copYearSelectChoiceQuery, null);
+  const copYearOptions = getCopYearOptions(filters.copyearid.length, copYearSelectChoiceQuery, null);
 
   const agencyOptions = getCopSelect21Options(filters.agencies.length, agencySelectQuery, null);
 
@@ -331,9 +332,6 @@ function MainApp() {
 
   return (
     <div className="flex flex-col gap-6 w-full">
-      <div className="flex items-center justify-between space-y-2">
-        <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
-      </div>
       <div className='grid grid-cols-4 auto-rows-auto	gap-6'>
         <div className="col-start-1 col-span-4 h-fit flex flex-col gap-4 top-3 z-50">
           <Card>
@@ -374,8 +372,9 @@ function MainApp() {
                 <MultiSelect
                   options={copYearOptions}
                   label="COP Year"
-                  setVal={(val) => updateFilters('copYear', val)}
-                  value={filters.copYear}
+                  setVal={(val) => updateFilters('copyearid', val)}
+                  value={filters.copyearid}
+                  storeObject
                 />
                 <MultiSelect
                   options={agencyOptions}
@@ -394,15 +393,13 @@ function MainApp() {
           </Card>
         </div>
         <Tabs defaultValue="overview" className="space-y-4 text-left col-start-1 col-span-4">
-          <TabsList>
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="table">
-              Table
-            </TabsTrigger>
-          </TabsList>
           <TabsContent value="overview" className="space-y-4">
             <div className="grid grid-cols-4 auto-rows-auto gap-4 items-start max-lg:grid-cols-2">
               <div className='col-start-1 col-span-1 flex flex-col gap-4 max-lg:col-span-2 max-lg:grid max-lg:grid-cols-2 max-md:grid-cols-1'>
+                <GaugeChart
+                  loadingData={gaugeChartQuery.isFetching}
+                  data={gaugeChartQuery.data?.data}
+                />
                 <RadialChart
                   key={2}
                   setShowTooltip={setShowTooltip}
@@ -412,10 +409,6 @@ function MainApp() {
                   filtersChanged={filtersChanged}
                   status={radialChartQuery.status}
                   dataUpdatedAt={radialChartQuery.dataUpdatedAt}
-                />
-                <GaugeChart
-                  loadingData={gaugeChartQuery.isFetching}
-                  data={gaugeChartQuery.data?.data}
                 />
               </div>
               <div className="col-start-2 col-span-3 max-lg:col-start-1 max-lg:col-span-2">
@@ -434,8 +427,7 @@ function MainApp() {
             </div>
             <Card>
               <CardHeader className="bg-[#f7fbff]">
-                <CardTitle className="text-left text-lg">Public Health Facilities</CardTitle>
-                <CardDescription className="text-left">SPI-RT Assessments</CardDescription>
+                <CardTitle className="text-left text-lg">SPI-RT Assessments by District</CardTitle>
               </CardHeader>
               <CardContent>
                 <AssessmentDataTable
@@ -446,8 +438,7 @@ function MainApp() {
             </Card>
             <Card className="">
               <CardHeader className="bg-[#f7fbff]">
-                <CardTitle className="text-left text-lg">Public Health Facilities</CardTitle>
-                <CardDescription className="text-left">SPI-RT Assessments</CardDescription>
+                <CardTitle className="text-left text-lg">SPI-RT Assessments by District</CardTitle>
               </CardHeader>
               <CardContent>
                 <DistrictDataTable
@@ -465,7 +456,7 @@ function MainApp() {
   )
 }
 
-function MultiSelect({ options, label, setVal, disable, value}) {
+function MultiSelect({ options, label, setVal, disable, value, storeObject=false }) {
 
   return (
     <div className="flex flex-col gap-2">
@@ -480,13 +471,24 @@ function MultiSelect({ options, label, setVal, disable, value}) {
           textAlign: 'left'
         }),
       }}
-        value={value.map(d => ({value : d, label : d}))}
+        value={value.map(d => {
+          if(typeof d === 'object' && !Array.isArray(d) && d !== null){
+            return d
+          }
+          return {value : d, label : d}
+        })}
         options={options}
         isMulti
         isDisabled={disable}
         onChange={(val) => {
           console.log(val, 'selVal');
-          setVal(val.map(d => d.value));
+          let valuesArr;
+          if(storeObject){
+            valuesArr = val;
+          }else{
+            valuesArr = val.map(d => d.value);
+          }
+          setVal(valuesArr);
         }}
       />
     </div>
@@ -506,7 +508,7 @@ function getSelectOptions(filtersLength, mainQ, subChoicesQ) {
 
 function getCopYearOptions(filtersLength, mainQ, subChoicesQ) {
   if (filtersLength == 0) {
-    return mainQ.data?.data?.data.map(d => ({ value: d.Text, label: d.Text }))
+    return mainQ.data?.data?.data.map(d => ({ value: d.Value, label: d.Text }))
   } else {
     return subChoicesQ?.data?.data.map(d => ({ value: d.Value, label: d.Value }))
   }

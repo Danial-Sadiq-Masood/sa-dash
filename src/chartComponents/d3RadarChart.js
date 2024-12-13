@@ -230,7 +230,7 @@ export default function buildChart(rootNode, points) {
                 y1: ({ MetricValue }) => 90 - MetricValue,
                 x2: 0,
                 y2: 90,
-                fill: "#606c38",
+                fill: "#338137",
                 stroke: "#283618",
                 curve: "linear-closed",
                 fillOpacity : 0.5
@@ -241,7 +241,7 @@ export default function buildChart(rootNode, points) {
                 x: ({ Description }) => longitude(Description),
                 y: ({ MetricValue }) => 90 - MetricValue,
                 d : (d) => d,
-                fill: "#606c38",
+                fill: "#338137",
                 stroke: "white",
                 r : 4
             }),

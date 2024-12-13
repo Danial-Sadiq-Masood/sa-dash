@@ -42,9 +42,9 @@ export default function RadialChartHolder({
 
     useEffect(
         () => {
-            
+
             if (status === 'success') {
-                if(data[0] && data[0].Description !== 'Overall Score'){
+                if (data[0] && data[0].Description !== 'Overall Score') {
                     data.unshift(data.pop()); //fix this later
                 }
                 console.log('radial data->', data)
@@ -63,11 +63,11 @@ export default function RadialChartHolder({
     return (
         <Card>
             <CardHeader className="bg-[#f7fbff]">
-                <CardTitle className="text-left text-lg">Public Health Facilities</CardTitle>
-                <CardDescription className="text-left">SPI-RT Assessments
+                <CardTitle className="text-left text-lg">
+                    SPI-RT Assessments
                     <br />
                     (Average domain %)
-                </CardDescription>
+                </CardTitle>
             </CardHeader>
             <CardContent className="relative min-h-[200px] py-0">
                 {

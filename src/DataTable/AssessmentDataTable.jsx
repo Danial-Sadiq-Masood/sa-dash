@@ -208,7 +208,7 @@ function DataTable({ table }) {
                             >
                                 {row.getVisibleCells().map((cell) => (
                                     <TableCell className="align-top" key={cell.id}>
-                                        <div className="max-h-[200px] px-6 overflow-hidden">
+                                        <div className="max-h-[200px] pl-6 overflow-hidden">
                                             {flexRender(
                                                 cell.column.columnDef.cell,
                                                 cell.getContext()

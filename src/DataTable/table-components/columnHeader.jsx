@@ -2,8 +2,11 @@ import {
     ArrowDownIcon,
     ArrowUpIcon,
     CaretSortIcon,
-    EyeNoneIcon
+    EyeNoneIcon,
+    CrossCircledIcon
   } from "@radix-ui/react-icons"
+
+  import { ListRestart } from 'lucide-react';
   
   import { cn } from "@/lib/utils"
   import { Button } from "@/components/ui/button"
@@ -47,6 +50,10 @@ import {
             <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
               <ArrowDownIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
               Desc
+            </DropdownMenuItem> 
+            <DropdownMenuItem disabled ={!column.getIsSorted()} onClick={() => column.clearSorting()}>
+              <CrossCircledIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
+              Reset
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

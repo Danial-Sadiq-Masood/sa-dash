@@ -56,8 +56,9 @@ export default function ChartHolder({
     return (
         <Card>
             <CardHeader className="bg-[#f7fbff]">
-                <CardTitle className="text-left text-lg">Public Health Facilities</CardTitle>
-                <CardDescription className="text-left">SPI-RT Assessments</CardDescription>
+                <CardTitle className="text-left text-lg">
+                    SPI-RT Assessments by Province
+                </CardTitle>
             </CardHeader>
             <CardContent className="relative min-h-[500px] py-10 max-md:min-h-3">
                 {

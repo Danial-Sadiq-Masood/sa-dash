@@ -230,7 +230,7 @@ function buildChart(
             .tickSizeOuter(0))
 
     const y2 = d3.scaleLinear()
-        .domain(d3.extent(chartData, d => d.PercentageComplete))
+        .domain([0,d3.max(chartData, d => d.PercentageComplete)])
         .rangeRound([height - margin.bottom, margin.top])
 
     const y1 = d3.scaleLinear()

@@ -48,8 +48,7 @@ export default function Gauge({loadingData, data}) {
     return (
         <Card>
             <CardHeader className="bg-[#f7fbff]">
-                <CardTitle className="text-left text-lg">Public Health Facilities</CardTitle>
-                <CardDescription className="text-left">Assessment Progress</CardDescription>
+                <CardTitle className="text-left text-lg">Assessment Progress</CardTitle>
             </CardHeader>
             <CardContent className="flex-1 p-0 relative">
             {
@@ -77,14 +76,14 @@ export default function Gauge({loadingData, data}) {
                         startAngle={0}
                         endAngle={endAngle}
                         innerRadius={80}
-                        outerRadius={110}
+                        outerRadius={120}
                     >
                         <PolarGrid
                             gridType="circle"
                             radialLines={false}
                             stroke="none"
-                            className="first:fill-muted last:fill-background"
-                            polarRadius={[86, 74]}
+                            className="first:fill-slate-200 last:fill-background"
+                            polarRadius={[89, 74]}
                         />
                         <RadialBar isAnimationActive={false} dataKey="visitors" background fill="#006105" cornerRadius={10} />
                         <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
