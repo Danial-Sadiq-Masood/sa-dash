@@ -1,14 +1,39 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/sa-dash/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-    <script type="module" crossorigin src="/sa-dash/assets/index-B0SyJzn-.js"></script>
-    <link rel="stylesheet" crossorigin href="/sa-dash/assets/index-v57DELZZ.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/sa-dash/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + React</title>
+  <style>
+    .dash-root .root {
+      max-width: 1600px;
+      width: 100vw;
+      margin: 0 auto;
+      padding: 3rem;
+      padding-left: 4rem;
+      padding-right: 4rem;
+      text-align: center;
+    }
+
+    .dash-root {
+      margin: 0;
+      display: flex;
+      place-items: center;
+      min-width: 320px;
+      min-height: 100vh;
+    }
+  </style>
+  <script type="module" crossorigin src="/sa-dash/assets/index-Dbkc4J95.js"></script>
+  <link rel="stylesheet" crossorigin href="/sa-dash/assets/index-DyL_9EL_.css">
+</head>
+
+<body>
+  <div class="dash-root">
+    <app-root username="dsouchon@gmail.com">
+    </app-root>
+  </div>
+</body>
+
 </html>
